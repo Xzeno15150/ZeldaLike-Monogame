@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "CADPHaM69QmRBcCa3XmvgcrmjhhmJAyxaZjaMoHmrHqt4tI7kqqhNbO1e/R4wPfT2meau6MJHM3NVpSF2vVRwA==",
+  "success": true,
+  "projectFilePath": "U:\\VR\\zelda-like-monogame\\Code\\ZeldaMonogame.Android\\ZeldaMonogame.Android.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vigaillard2\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\vigaillard2\\.nuget\\packages\\monogame.framework.android\\3.8.0.1641\\monogame.framework.android.3.8.0.1641.nupkg.sha512"
+  ],
+  "logs": []
+}
