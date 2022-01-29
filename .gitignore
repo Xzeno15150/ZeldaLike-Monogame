@@ -4,3 +4,9 @@ ZeldaMonogame.Android/obj/
 ZeldaMonogame.WindowsUWP/obj/ 
 ZeldaMonogame.Core/obj/ 
 ZeldaMonogame.iOS/obj/ 
+ZeldaMonogame.DesktopGL/bin/
+ZeldaMonogame.WindowsDX/bin/
+ZeldaMonogame.Android/bin/ 
+ZeldaMonogame.WindowsUWP/bin/ 
+ZeldaMonogame.Core/bin/ 
+ZeldaMonogame.iOS/bin/ 
