@@ -11,6 +11,8 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
         protected Microsoft.Xna.Framework.Game _game;
         protected SpriteBatch _spriteBatch;
 
+        protected Vector2 position;
+
         public Entite(Microsoft.Xna.Framework.Game game, SpriteBatch spriteBatch) : base(game)
         {
             _game = game;

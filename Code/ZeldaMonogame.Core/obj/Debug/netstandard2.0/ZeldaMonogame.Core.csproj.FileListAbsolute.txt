@@ -1,9 +1,0 @@
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\bin\Debug\netstandard2.0\ZeldaMonogame.Core.deps.json
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\bin\Debug\netstandard2.0\ZeldaMonogame.Core.dll
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\bin\Debug\netstandard2.0\ZeldaMonogame.Core.pdb
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\obj\Debug\netstandard2.0\ZeldaMonogame.Core.csproj.AssemblyReference.cache
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\obj\Debug\netstandard2.0\ZeldaMonogame.Core.AssemblyInfoInputs.cache
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\obj\Debug\netstandard2.0\ZeldaMonogame.Core.AssemblyInfo.cs
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\obj\Debug\netstandard2.0\ZeldaMonogame.Core.csproj.CoreCompileInputs.cache
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\obj\Debug\netstandard2.0\ZeldaMonogame.Core.dll
-U:\VR\zelda-like-monogame\Code\ZeldaMonogame.Core\obj\Debug\netstandard2.0\ZeldaMonogame.Core.pdb
