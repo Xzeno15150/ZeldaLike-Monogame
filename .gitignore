@@ -10,3 +10,5 @@ Code/ZeldaMonogame.Android/bin/
 Code/ZeldaMonogame.WindowsUWP/bin/ 
 Code/ZeldaMonogame.Core/bin/ 
 Code/ZeldaMonogame.iOS/bin/ 
+Code/ZeldaMonogame.Core/Content/obj/ 
+Code/ZeldaMonogame.Core/Content/bin/ 
