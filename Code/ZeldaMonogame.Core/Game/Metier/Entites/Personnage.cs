@@ -7,7 +7,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
 {
     public abstract class Personnage : Entite
     {
-        public Personnage(Microsoft.Xna.Framework.Game game, SpriteBatch spriteBatch) : base(game, spriteBatch)
+        public Personnage(Microsoft.Xna.Framework.Game game, Texture2D texture) : base(game, texture)
         {  
         }
 

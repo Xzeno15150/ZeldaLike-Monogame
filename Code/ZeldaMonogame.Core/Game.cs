@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using ZeldaMonogame.Core.Game.Metier.Fabriques.Fabriques_Entites;
 
 namespace ZeldaMonogame
 {
@@ -8,6 +9,7 @@ namespace ZeldaMonogame
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
 
         public ZeldaMonogameGame()
         {
@@ -46,6 +48,8 @@ namespace ZeldaMonogame
 
             // TODO: Add your drawing code here
 
+            //new FabriqueOgre().fabriquer(this).Draw(gameTime);
+            new FabriqueZombie().fabriquer(this).Draw(gameTime);
             base.Draw(gameTime);
         }
     }

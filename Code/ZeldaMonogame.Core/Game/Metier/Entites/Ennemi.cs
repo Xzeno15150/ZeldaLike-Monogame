@@ -7,7 +7,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
 {
     public class Ennemi : Personnage
     {
-        public Ennemi(Microsoft.Xna.Framework.Game game, SpriteBatch spriteBatch) : base(game, spriteBatch)
+        public Ennemi(Microsoft.Xna.Framework.Game game, Texture2D texture) : base(game, texture)
         {
         }
     }

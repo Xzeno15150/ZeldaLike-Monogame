@@ -16,6 +16,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Game\" />
+    <Folder Include="Content\Ennemis\" />
   </ItemGroup>
 </Project>

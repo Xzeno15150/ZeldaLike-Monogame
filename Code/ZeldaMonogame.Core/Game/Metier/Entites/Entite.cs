@@ -11,12 +11,15 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
         protected Microsoft.Xna.Framework.Game _game;
         protected SpriteBatch _spriteBatch;
 
-        protected Vector2 position;
+        protected Vector2 _position;
+        protected Texture2D _texture;
 
-        public Entite(Microsoft.Xna.Framework.Game game, SpriteBatch spriteBatch) : base(game)
+        public Entite(Microsoft.Xna.Framework.Game game, Texture2D texture) : base(game)
         {
             _game = game;
-            _spriteBatch = spriteBatch;
+            _texture = texture;
+            _position = new Vector2(0, 0);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
         public override bool Equals(object obj)
@@ -32,6 +35,14 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
         public override string ToString()
         {
             return base.ToString();
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(_texture,_position,Color.White);
+            _spriteBatch.End();
+            base.Draw(gameTime);
         }
     }
 }
