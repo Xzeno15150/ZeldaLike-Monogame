@@ -8,7 +8,21 @@
     <None Remove="Content\obj\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Content\Maps\GRASS+.png" />
+    <None Remove="Content\Maps\Grass.tsx" />
+    <None Remove="Content\Maps\Map_Test.tmx" />
     <None Remove="Content\ZeldaMonogame.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps\GRASS+.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Maps\Grass.tsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Maps\Map_Test.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
@@ -16,6 +30,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Assets\Grass+\" />
     <Folder Include="Content\Ennemis\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TiledSharp\TiledSharp.csproj" />
   </ItemGroup>
 </Project>

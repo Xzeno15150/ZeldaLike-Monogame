@@ -1,7 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using TiledSharp;
 using ZeldaMonogame.Core.Game.Fabriques.Fabriques_Entites;
+using ZeldaMonogame.Core.Game.Metier.Map;
 
 namespace ZeldaMonogame
 {
@@ -9,7 +11,13 @@ namespace ZeldaMonogame
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private MapPart mapPart;
+        Texture2D tileset;
 
+        int tileWidth;
+        int tileHeight;
+        int tilesetTilesWide;
+        int tilesetTilesHigh;
 
         public ZeldaMonogameGame()
         {
@@ -28,7 +36,14 @@ namespace ZeldaMonogame
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            mapPart = new MapPart("Content/Maps/Map_Test.tmx");
+           /* tileset = Content.Load<Texture2D>(mapPart.Map.Tilesets[0].Name.ToString());
 
+            tileWidth = mapPart.Map.Tilesets[0].TileWidth;
+            tileHeight = mapPart.Map.Tilesets[0].TileHeight;
+
+            tilesetTilesWide = tileset.Width / tileWidth;
+            tilesetTilesHigh = tileset.Height / tileHeight;*/
             // TODO: use this.Content to load your game content here
         }
 

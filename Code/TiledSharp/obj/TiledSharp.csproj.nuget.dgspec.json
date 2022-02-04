@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "U:\\VR\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj": {}
+    "U:\\iut2A\\vr\\projet\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj": {}
   },
   "projects": {
-    "U:\\VR\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj": {
+    "U:\\iut2A\\vr\\projet\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "U:\\VR\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj",
+        "projectUniqueName": "U:\\iut2A\\vr\\projet\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj",
         "projectName": "TiledSharp",
-        "projectPath": "U:\\VR\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj",
-        "packagesPath": "C:\\Users\\vigaillard2\\.nuget\\packages\\",
-        "outputPath": "U:\\VR\\zelda-like-monogame\\Code\\TiledSharp\\obj\\",
+        "projectPath": "U:\\iut2A\\vr\\projet\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj",
+        "packagesPath": "C:\\Users\\loperret2\\.nuget\\packages\\",
+        "outputPath": "U:\\iut2A\\vr\\projet\\zelda-like-monogame\\Code\\TiledSharp\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\vigaillard2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\loperret2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
