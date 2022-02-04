@@ -1,0 +1,7 @@
+U:\VR\zelda-like-monogame\Code\TiledSharp\bin\Debug\net45\TiledSharp.dll
+U:\VR\zelda-like-monogame\Code\TiledSharp\bin\Debug\net45\TiledSharp.pdb
+U:\VR\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.csproj.AssemblyReference.cache
+U:\VR\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.GeneratedMSBuildEditorConfig.editorconfig
+U:\VR\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.csproj.CoreCompileInputs.cache
+U:\VR\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.dll
+U:\VR\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.pdb

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Text;
 using ZeldaMonogame.Core.Game.Metier.Entites;
 
-namespace ZeldaMonogame.Core.Game.Metier.Fabriques.Fabriques_Entites
+namespace ZeldaMonogame.Core.Game.Fabriques.Fabriques_Entites
 {
     public class FabriqueZombie : IFabriqueEnnnemi
     {
         public Entite fabriquer(Microsoft.Xna.Framework.Game game)
         {
-            return new Ennemi(game, game.Content.Load<Texture2D>("zombie_idle_anim_f0"));
+            return new Ennemi(game, game.Content.Load<Texture2D>("zombie_idle_anim_f0"), 80, 60);
         }
     }
 }

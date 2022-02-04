@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ZeldaMonogame.Core.Game.Metier.Fabriques.Fabriques_Entites;
 
-namespace ZeldaMonogame.Core.Game.Metier.Fabriques
+namespace ZeldaMonogame.Core.Game.Fabriques.Fabriques_Entites
 {
     public interface IFabriqueObstacle : IFabriqueEntite
     {

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace ZeldaMonogame.Core.Game.Metier.Fabriques.Fabriques_Entites
+namespace ZeldaMonogame.Core.Game.Fabriques.Fabriques_Entites
 {
     public class FabriqueOgre : IFabriqueEnnnemi
     {

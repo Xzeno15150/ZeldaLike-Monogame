@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/ogre_idle_anim_f0.png</SourceFile>
-  <SourceTime>2022-02-02T21:01:03.2447065+01:00</SourceTime>
-  <DestFile>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/bin/DesktopGL/ZeldaMonogame/ogre_idle_anim_f0.xnb</DestFile>
-  <DestTime>2022-02-03T09:01:19.0337599+01:00</DestTime>
+  <SourceFile>U:/VR/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/ogre_idle_anim_f0.png</SourceFile>
+  <SourceTime>2022-02-04T13:31:36.2199338+01:00</SourceTime>
+  <DestFile>U:/VR/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/bin/DesktopGL/ZeldaMonogame/ogre_idle_anim_f0.xnb</DestFile>
+  <DestTime>2022-02-04T13:44:45.4987905+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
