@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TiledSharp;
+using System;
 using ZeldaMonogame.Core.Game.Fabriques.Fabriques_Entites;
 using ZeldaMonogame.Core.Game.Metier.Map;
 
@@ -18,6 +19,8 @@ namespace ZeldaMonogame
         int tileHeight;
         int tilesetTilesWide;
         int tilesetTilesHigh;
+        private Rectangle perso;
+
 
         public ZeldaMonogameGame()
         {
@@ -29,7 +32,6 @@ namespace ZeldaMonogame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -54,7 +56,18 @@ namespace ZeldaMonogame
 
             // TODO: Add your update logic here
 
+            HandleInput();
+            
+            
+
             base.Update(gameTime);
+        }
+
+        private void HandleInput()
+        {
+            var keys = Keyboard.GetState();
+
+            // TODO Appeler la bonne méthode sur le déplaceur en fonction des touches appuyées
         }
 
         protected override void Draw(GameTime gameTime)

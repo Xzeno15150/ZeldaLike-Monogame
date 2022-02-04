@@ -54,7 +54,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
         public override void Draw(GameTime gameTime)
         {
             _spriteBatch.Begin();
-            _spriteBatch.Draw(_texture,new Rectangle((int) _position.X, (int) _position.Y, _longueur, _hauteur), Color.White);
+            _spriteBatch.Draw(_texture, _position, null, Color.White, 0f, Vector2.Zero, 1.5f, SpriteEffects.None, 0f);
             _spriteBatch.End();
             base.Draw(gameTime);
         }
