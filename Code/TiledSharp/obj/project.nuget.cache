@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "2bNGuaTwE5TN6MCvgOEFLCi3F7vaX/9Rd4VniR2ayKBeGkt8xoCoki842suFWqA6aBb5FB/nNapoo+p80L5DIQ==",
+  "dgSpecHash": "KRXdSycUX8BAtzCevL8J94Q0n8QRkG1q0r3jimtzhQccCYVriVlptQkxcJ5JJjzmNNeOBVuW6+GdJk17c0oMWg==",
   "success": true,
-  "projectFilePath": "U:\\iut2A\\vr\\projet\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj",
+  "projectFilePath": "D:\\IUT Info 2a\\P3\\vr\\projet1\\zelda-like-monogame\\Code\\TiledSharp\\TiledSharp.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\loperret2\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\loperret2\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\Louis\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Louis\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

@@ -4,10 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/ogre_idle_anim_f0.png</File>
-    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/zombie_idle_anim_f0.png</File>
+    <File>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/Maps/GRASS+.png</File>
+    <File>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/ogre_idle_anim_f0.png</File>
+    <File>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/zombie_idle_anim_f0.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

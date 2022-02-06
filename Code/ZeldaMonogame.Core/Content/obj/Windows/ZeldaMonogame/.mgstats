@@ -1,1 +1,3 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/ogre_idle_anim_f0.png","D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/bin/Windows/ZeldaMonogame/ogre_idle_anim_f0.xnb","TextureProcessor","Texture2DContent",497,4181,0,310964
+"D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/zombie_idle_anim_f0.png","D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/bin/Windows/ZeldaMonogame/zombie_idle_anim_f0.xnb","TextureProcessor","Texture2DContent",267,1109,0,0818634

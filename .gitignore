@@ -12,3 +12,5 @@ Code/ZeldaMonogame.Core/bin/
 Code/ZeldaMonogame.iOS/bin/ 
 Code/ZeldaMonogame.Core/Content/obj/ 
 Code/ZeldaMonogame.Core/Content/bin/ 
+Code/TiledSharp/obj/ 
+Code/TiledSharp/bin/

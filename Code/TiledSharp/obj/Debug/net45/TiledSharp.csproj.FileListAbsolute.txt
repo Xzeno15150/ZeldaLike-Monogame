@@ -12,3 +12,9 @@ U:\iut2A\vr\projet\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledShar
 U:\iut2A\vr\projet\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.csproj.CoreCompileInputs.cache
 U:\iut2A\vr\projet\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.dll
 U:\iut2A\vr\projet\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.pdb
+D:\IUT Info 2a\P3\vr\projet1\zelda-like-monogame\Code\TiledSharp\bin\Debug\net45\TiledSharp.dll
+D:\IUT Info 2a\P3\vr\projet1\zelda-like-monogame\Code\TiledSharp\bin\Debug\net45\TiledSharp.pdb
+D:\IUT Info 2a\P3\vr\projet1\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.csprojAssemblyReference.cache
+D:\IUT Info 2a\P3\vr\projet1\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.csproj.CoreCompileInputs.cache
+D:\IUT Info 2a\P3\vr\projet1\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.dll
+D:\IUT Info 2a\P3\vr\projet1\zelda-like-monogame\Code\TiledSharp\obj\Debug\net45\TiledSharp.pdb
