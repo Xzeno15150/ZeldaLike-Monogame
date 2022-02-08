@@ -4,11 +4,45 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/Maps/GRASS+.png</File>
-    <File>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/ogre_idle_anim_f0.png</File>
-    <File>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/zombie_idle_anim_f0.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Dirt_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Dirt_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Flower_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Flower_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Grass_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Grass_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Wall-Up_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Wall-Up_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Water_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]Water_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]WaterFall_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[A]WaterFall_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[Base]BaseChip_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/[Base]BaseChip_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/LightShadow_pipo.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/LightShadow_pipo.tsx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/Maps/GRASS+.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/ogre_idle_anim_f0.png</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/samplemap.tmx</File>
+    <File>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/zombie_idle_anim_f0.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

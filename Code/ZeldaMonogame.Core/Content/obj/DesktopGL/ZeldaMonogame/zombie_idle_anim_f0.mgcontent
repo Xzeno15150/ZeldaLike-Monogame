@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/zombie_idle_anim_f0.png</SourceFile>
-  <SourceTime>2022-02-06T13:51:04+01:00</SourceTime>
-  <DestFile>D:/IUT Info 2a/P3/vr/projet1/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/bin/DesktopGL/ZeldaMonogame/zombie_idle_anim_f0.xnb</DestFile>
-  <DestTime>2022-02-06T13:54:16+01:00</DestTime>
+  <SourceFile>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/zombie_idle_anim_f0.png</SourceFile>
+  <SourceTime>2022-02-02T21:01:03.6880621+01:00</SourceTime>
+  <DestFile>U:/iut2A/vr/projet/zelda-like-monogame/Code/ZeldaMonogame.Core/Content/bin/DesktopGL/ZeldaMonogame/zombie_idle_anim_f0.xnb</DestFile>
+  <DestTime>2022-02-08T18:35:15.5116801+01:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2020-08-10T16:17:54+02:00</ImporterTime>
+  <ImporterTime>2020-08-10T18:17:54+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2020-08-10T16:17:54+02:00</ProcessorTime>
+  <ProcessorTime>2020-08-10T18:17:54+02:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>
