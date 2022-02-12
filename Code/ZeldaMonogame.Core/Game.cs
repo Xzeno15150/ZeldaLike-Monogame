@@ -4,7 +4,9 @@ using Microsoft.Xna.Framework.Input;
 using ZeldaMonogame.Core.Game.Fabriques.Fabriques_Entites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
+using MonoGame.Extended.ViewportAdapters;
 using System;
+using MonoGame.Extended;
 
 namespace ZeldaMonogame
 {
@@ -14,8 +16,11 @@ namespace ZeldaMonogame
         private SpriteBatch _spriteBatch;
 
 
-        TiledMap _tiledMap;
-        TiledMapRenderer _tiledMapRenderer;
+        private TiledMap _tiledMap;
+        private TiledMapRenderer _tiledMapRenderer;
+
+        private Vector2 _cameraPosition;
+        private OrthographicCamera _camera;
 
         public ZeldaMonogameGame()
         {
@@ -26,9 +31,51 @@ namespace ZeldaMonogame
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 600);
+            _camera = new OrthographicCamera(viewportAdapter);
+            _cameraPosition = new Vector2(400, 300);
+
             base.Initialize();
         }
+        private Vector2 GetMovementDirection()
+        {
+            var movementDirection = Vector2.Zero;
+            var state = Keyboard.GetState();
+            if (state.IsKeyDown(Keys.S))
+            {
+                movementDirection += Vector2.UnitY;
+            }
+            if (state.IsKeyDown(Keys.Z))
+            {
+                movementDirection -= Vector2.UnitY;
+            }
+            if (state.IsKeyDown(Keys.Q))
+            {
+                movementDirection -= Vector2.UnitX;
+            }
+            if (state.IsKeyDown(Keys.D))
+            {
+                movementDirection += Vector2.UnitX;
+            }
+
+            // Can't normalize the zero vector so test for it before normalizing
+            if (movementDirection != Vector2.Zero)
+            {
+                movementDirection.Normalize();
+            }
+
+            return movementDirection;
+        }
+
+        private void MoveCamera(GameTime gameTime)
+        {
+            var speed = 200;
+            var seconds = gameTime.GetElapsedSeconds();
+            var movementDirection = GetMovementDirection();
+            _cameraPosition += speed * movementDirection * seconds;
+        }
+
+
 
         protected override void LoadContent()
         {
@@ -43,10 +90,12 @@ namespace ZeldaMonogame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
             // TODO: Add your update logic here
             _tiledMapRenderer.Update(gameTime);
-            HandleInput();
-            
+            //HandleInput();
+            MoveCamera(gameTime);
+            _camera.LookAt(_cameraPosition);
             
 
             base.Update(gameTime);
@@ -61,10 +110,10 @@ namespace ZeldaMonogame
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            _tiledMapRenderer.Draw();
+            _tiledMapRenderer.Draw(_camera.GetViewMatrix());
 
             base.Draw(gameTime);
         }

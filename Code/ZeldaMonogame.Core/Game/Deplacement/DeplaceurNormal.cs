@@ -1,28 +1,34 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using ZeldaMonogame.Core.Game.Metier.Entites;
 
 namespace ZeldaMonogame.Core.Game.Deplacement
 {
-    public class DeplaceurNormal : Deplaceur
+    public class DeplaceurNormal : IDeplaceur
     {
-        public override void DeplacerBas(Entite entite)
+        private int _vitesse;
+
+
+
+
+        public void DeplacerBas(IMovable movable)
+        {
+        }
+
+        public void DeplacerDroite(IMovable movable)
         {
             throw new NotImplementedException();
         }
 
-        public override void DeplacerDroite(Entite entite)
+        public void DeplacerGauche(IMovable movable)
         {
             throw new NotImplementedException();
         }
 
-        public override void DeplacerGauche(Entite entite)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void DeplacerHaut(Entite entite)
+        public void DeplacerHaut(IMovable movable)
         {
             throw new NotImplementedException();
         }

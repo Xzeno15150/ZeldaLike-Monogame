@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ZeldaMonogame.Core.Game.Metier.Entites
 {
-    public abstract class Entite : DrawableGameComponent, IUpdateable
+    public abstract class Entite : DrawableGameComponent, IUpdateable, IMovable
     {
         protected Microsoft.Xna.Framework.Game _game;
         protected SpriteBatch _spriteBatch;
@@ -16,6 +17,8 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
 
         protected int _longueur;
         protected int _hauteur;
+
+        public Vector2 Position { get => _position; set => _position = value; }
 
         public Entite(Microsoft.Xna.Framework.Game game, Texture2D texture, Vector2 pos, int longueur, int hauteur) : base(game)
         {
