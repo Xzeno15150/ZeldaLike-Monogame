@@ -34,7 +34,7 @@ namespace ZeldaMonogame
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _tiledMap = Content.Load<TiledMap>("samplemap");
+            _tiledMap = Content.Load<TiledMap>("Maps/Map_Test");
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
             // TODO: use this.Content to load your game content here
         }
