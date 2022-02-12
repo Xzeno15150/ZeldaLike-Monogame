@@ -1,100 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Content\bin\**" />
     <Compile Remove="Content\obj\**" />
+    <EmbeddedResource Remove="Content\bin\**" />
     <EmbeddedResource Remove="Content\obj\**" />
+    <None Remove="Content\bin\**" />
     <None Remove="Content\obj\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Content\LightShadow_pipo.png" />
-    <None Remove="Content\LightShadow_pipo.tsx" />
-    <None Remove="Content\Maps\GRASS+.png" />
-    <None Remove="Content\Maps\Grass.tsx" />
-    <None Remove="Content\Maps\Map_Test.tmx" />
-    <None Remove="Content\ogre_idle_anim_f0.png" />
-    <None Remove="Content\samplemap.tmx" />
-    <None Remove="Content\ZeldaMonogame.mgcb" />
-    <None Remove="Content\[A]Dirt_pipo.png" />
-    <None Remove="Content\[A]Dirt_pipo.tsx" />
-    <None Remove="Content\[A]Flower_pipo.png" />
-    <None Remove="Content\[A]Flower_pipo.tsx" />
-    <None Remove="Content\[A]Grass_pipo.png" />
-    <None Remove="Content\[A]Grass_pipo.tsx" />
-    <None Remove="Content\[A]Wall-Up_pipo.png" />
-    <None Remove="Content\[A]Wall-Up_pipo.tsx" />
-    <None Remove="Content\[A]WaterFall_pipo.png" />
-    <None Remove="Content\[A]WaterFall_pipo.tsx" />
-    <None Remove="Content\[A]Water_pipo.png" />
-    <None Remove="Content\[A]Water_pipo.tsx" />
-    <None Remove="Content\[Base]BaseChip_pipo.png" />
-    <None Remove="Content\[Base]BaseChip_pipo.tsx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\LightShadow_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\LightShadow_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Maps\GRASS+.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Maps\Grass.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Maps\Map_Test.tmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\ogre_idle_anim_f0.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\samplemap.tmx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Dirt_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Dirt_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Flower_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Flower_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Grass_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Grass_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Wall-Up_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Wall-Up_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]WaterFall_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]WaterFall_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Water_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[A]Water_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[Base]BaseChip_pipo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\[Base]BaseChip_pipo.tsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
@@ -105,10 +19,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Assets\Grass+\" />
-    <Folder Include="Content\Ennemis\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TiledSharp\TiledSharp.csproj" />
+    <Folder Include="Game\Metier\Map\" />
   </ItemGroup>
 </Project>

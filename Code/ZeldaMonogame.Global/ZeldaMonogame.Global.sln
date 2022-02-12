@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeldaMonogame.Android", "..\ZeldaMonogame.Android\ZeldaMonogame.Android.csproj", "{B88A3D22-39D5-4AA3-B9E9-1D6588E1E397}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeldaMonogame.Core", "..\ZeldaMonogame.Core\ZeldaMonogame.Core.csproj", "{53668B8B-01B6-4E7D-BE23-9EE21C406B04}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F} = {A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeldaMonogame.DesktopGL", "..\ZeldaMonogame.DesktopGL\ZeldaMonogame.DesktopGL.csproj", "{9534DE23-E468-4997-ACDD-F29D48DD3673}"
 EndProject
@@ -17,8 +14,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeldaMonogame.WindowsDX", "..\ZeldaMonogame.WindowsDX\ZeldaMonogame.WindowsDX.csproj", "{B621FFF7-4AB6-4ED5-AB32-77AEBE354B04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeldaMonogame.WindowsUWP", "..\ZeldaMonogame.WindowsUWP\ZeldaMonogame.WindowsUWP.csproj", "{F2E9F898-5CEA-4267-8FEA-10734D287548}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiledSharp", "..\TiledSharp\TiledSharp.csproj", "{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -356,54 +351,6 @@ Global
 		{F2E9F898-5CEA-4267-8FEA-10734D287548}.Release|x86.ActiveCfg = Release|x86
 		{F2E9F898-5CEA-4267-8FEA-10734D287548}.Release|x86.Build.0 = Release|x86
 		{F2E9F898-5CEA-4267-8FEA-10734D287548}.Release|x86.Deploy.0 = Release|x86
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|Any CPU.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|ARM.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|ARM.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|x64.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|x64.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|x86.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Ad-Hoc|x86.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|Any CPU.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|ARM.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|ARM.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|iPhone.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|x64.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|x64.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|x86.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.AppStore|x86.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|ARM.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|x64.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Debug|x86.Build.0 = Debug|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|ARM.ActiveCfg = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|ARM.Build.0 = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|iPhone.Build.0 = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|x64.ActiveCfg = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|x64.Build.0 = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|x86.ActiveCfg = Release|Any CPU
-		{A4D0AA88-5DBC-46AC-A3D3-EA0060640C6F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
