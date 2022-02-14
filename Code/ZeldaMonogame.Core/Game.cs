@@ -31,9 +31,13 @@ namespace ZeldaMonogame
 
         protected override void Initialize()
         {
-            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 600);
+            _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            _graphics.IsFullScreen = true;
+            _graphics.ApplyChanges();
+            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1280/2, 720/2);
             _camera = new OrthographicCamera(viewportAdapter);
-            _cameraPosition = new Vector2(400, 300);
+            //_cameraPosition = new Vector2(400, 300);
 
             base.Initialize();
         }
