@@ -3,13 +3,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ZeldaMonogame.Core.Game.Metier.Entites;
 
-namespace ZeldaMonogame.Core.Game
+namespace ZeldaMonogame.Core.Game.Deplacement
 {
-    class CameraManager
+    class DeplaceurCamera : IDeplaceur
     {
         private int _widthMap;
         private int _heightMap;
@@ -17,20 +15,21 @@ namespace ZeldaMonogame.Core.Game
         private static readonly double ZOOM = 1.5;
         private int _widthCamera = (int) (1280 / ZOOM);
         private int _heightCamera = (int)(720 / ZOOM);
-
+        private PersonnagePrincipal _personnagePrincipal;
         private Vector2 _cameraPosition;
         public OrthographicCamera Camera { get; private set; }
 
-        public CameraManager(GameWindow Window, GraphicsDevice GraphicsDevice)
+
+        public DeplaceurCamera(GameWindow Window, GraphicsDevice GraphicsDevice, PersonnagePrincipal personnage)
         {
             var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, _widthCamera, _heightCamera);
             Camera = new OrthographicCamera(viewportAdapter);
-            
+            _personnagePrincipal = personnage;
         }
 
         private void InitPosition()
         {
-            _cameraPosition = new Vector2((float) (_widthCamera / 2) , (float) (_heightCamera / 2));
+            _cameraPosition = new Vector2(_widthCamera / 2 ,_heightCamera / 2);
         }
 
         public void SetMapTaille(int width, int height)
@@ -67,10 +66,10 @@ namespace ZeldaMonogame.Core.Game
                 movementDirection.Normalize();
             }
 
-            return movementDirection;
+            return movementDirection; 
         }
 
-        public void MoveCamera(GameTime gameTime)
+        public void Deplacer(GameTime gameTime)
         {
             var speed = 200;
             var seconds = gameTime.GetElapsedSeconds();

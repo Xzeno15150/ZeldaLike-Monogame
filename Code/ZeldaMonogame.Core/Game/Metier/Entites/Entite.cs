@@ -11,10 +11,8 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
     {
         protected Microsoft.Xna.Framework.Game _game;
         protected SpriteBatch _spriteBatch;
-
-        protected Vector2 _position;
         protected Texture2D _texture;
-
+        private Vector2 _position;
         protected int _longueur;
         protected int _hauteur;
 
@@ -38,6 +36,10 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
         {
         }
 
+        public void SetTexture(Texture2D texture)
+        {
+            _texture = texture;
+        }
 
         public override bool Equals(object obj)
         {

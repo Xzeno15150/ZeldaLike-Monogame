@@ -1,13 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using ZeldaMonogame.Core.Game.Fabriques.Fabriques_Entites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
-using MonoGame.Extended.ViewportAdapters;
-using System;
-using MonoGame.Extended;
 using ZeldaMonogame.Core.Game;
+using ZeldaMonogame.Core.Game.Deplacement;
+using ZeldaMonogame.Core.Game.Metier.Entites;
 
 namespace ZeldaMonogame
 {
@@ -18,7 +16,10 @@ namespace ZeldaMonogame
 
         private TiledMap _tiledMap;
         private TiledMapRenderer _tiledMapRenderer;
-        private CameraManager _cameraManager;
+        private DeplaceurCamera _cameraManager;
+
+        private PersonnagePrincipal _personnagePrincipal;
+        private DeplaceurEntite _deplaceurPersonnage;
 
         public ZeldaMonogameGame()
         {
@@ -35,7 +36,10 @@ namespace ZeldaMonogame
             _graphics.ApplyChanges();
 
             GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
-            _cameraManager = new CameraManager(Window, GraphicsDevice);
+
+            _personnagePrincipal = new PersonnagePrincipal(this, null, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight/2), 60, 60); ;
+            _deplaceurPersonnage = new DeplaceurEntite(_personnagePrincipal);
+            _cameraManager = new DeplaceurCamera(Window, GraphicsDevice, _personnagePrincipal);
             IsMouseVisible = false;
             base.Initialize();
         }
@@ -44,7 +48,9 @@ namespace ZeldaMonogame
         {
             _tiledMap = Content.Load<TiledMap>("Maps/tiledmaps/"+name);
             _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+
             _cameraManager.SetMapTaille(_tiledMap.Width * _tiledMap.TileWidth, _tiledMap.Height * _tiledMap.TileHeight);
+            
         }
         
 
@@ -52,6 +58,9 @@ namespace ZeldaMonogame
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             LoadMap("samplemap");
+
+            _personnagePrincipal.SetTexture(Content.Load<Texture2D>("Assets/Character/Main/idle_down3"));
+            _deplaceurPersonnage.SetMapTaille(_tiledMap.Width * _tiledMap.TileWidth, _tiledMap.Height * _tiledMap.TileHeight);
         }
 
         protected override void Update(GameTime gameTime)
@@ -59,19 +68,11 @@ namespace ZeldaMonogame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-            // TODO: Add your update logic here
             _tiledMapRenderer.Update(gameTime);
-            //HandleInput();
-            _cameraManager.MoveCamera(gameTime);
+            _cameraManager.Deplacer(gameTime);
+
+            _deplaceurPersonnage.Deplacer(gameTime);
             base.Update(gameTime);
-        }
-
-        private void HandleInput()
-        {
-            var keys = Keyboard.GetState();
-
-            // TODO Appeler la bonne méthode sur le déplaceur en fonction des touches appuyées
         }
 
         protected override void Draw(GameTime gameTime)
@@ -80,6 +81,7 @@ namespace ZeldaMonogame
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
             _tiledMapRenderer.Draw(_cameraManager.Camera.GetViewMatrix());
+            _personnagePrincipal.Draw(gameTime);
             base.Draw(gameTime);
         }
     }
