@@ -7,6 +7,7 @@ using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.ViewportAdapters;
 using System;
 using MonoGame.Extended;
+using ZeldaMonogame.Core.Game;
 
 namespace ZeldaMonogame
 {
@@ -15,12 +16,9 @@ namespace ZeldaMonogame
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-
         private TiledMap _tiledMap;
         private TiledMapRenderer _tiledMapRenderer;
-
-        private Vector2 _cameraPosition;
-        private OrthographicCamera _camera;
+        private CameraManager _cameraManager;
 
         public ZeldaMonogameGame()
         {
@@ -35,58 +33,25 @@ namespace ZeldaMonogame
             _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             _graphics.IsFullScreen = true;
             _graphics.ApplyChanges();
-            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 1280/2, 720/2);
-            _camera = new OrthographicCamera(viewportAdapter);
-            //_cameraPosition = new Vector2(400, 300);
 
+            GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
+            _cameraManager = new CameraManager(Window, GraphicsDevice);
+            IsMouseVisible = false;
             base.Initialize();
         }
-        private Vector2 GetMovementDirection()
+
+        private void LoadMap(string name)
         {
-            var movementDirection = Vector2.Zero;
-            var state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.S))
-            {
-                movementDirection += Vector2.UnitY;
-            }
-            if (state.IsKeyDown(Keys.Z))
-            {
-                movementDirection -= Vector2.UnitY;
-            }
-            if (state.IsKeyDown(Keys.Q))
-            {
-                movementDirection -= Vector2.UnitX;
-            }
-            if (state.IsKeyDown(Keys.D))
-            {
-                movementDirection += Vector2.UnitX;
-            }
-
-            // Can't normalize the zero vector so test for it before normalizing
-            if (movementDirection != Vector2.Zero)
-            {
-                movementDirection.Normalize();
-            }
-
-            return movementDirection;
+            _tiledMap = Content.Load<TiledMap>("Maps/tiledmaps/"+name);
+            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+            _cameraManager.SetMapTaille(_tiledMap.Width * _tiledMap.TileWidth, _tiledMap.Height * _tiledMap.TileHeight);
         }
-
-        private void MoveCamera(GameTime gameTime)
-        {
-            var speed = 200;
-            var seconds = gameTime.GetElapsedSeconds();
-            var movementDirection = GetMovementDirection();
-            _cameraPosition += speed * movementDirection * seconds;
-        }
-
-
+        
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _tiledMap = Content.Load<TiledMap>("Maps/tiledmaps/samplemap");
-            _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap); 
-            // TODO: use this.Content to load your game content here
+            LoadMap("samplemap");
         }
 
         protected override void Update(GameTime gameTime)
@@ -98,10 +63,7 @@ namespace ZeldaMonogame
             // TODO: Add your update logic here
             _tiledMapRenderer.Update(gameTime);
             //HandleInput();
-            MoveCamera(gameTime);
-            _camera.LookAt(_cameraPosition);
-            
-
+            _cameraManager.MoveCamera(gameTime);
             base.Update(gameTime);
         }
 
@@ -117,8 +79,7 @@ namespace ZeldaMonogame
             GraphicsDevice.Clear(Color.Black);
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-            _tiledMapRenderer.Draw(_camera.GetViewMatrix());
-
+            _tiledMapRenderer.Draw(_cameraManager.Camera.GetViewMatrix());
             base.Draw(gameTime);
         }
     }
