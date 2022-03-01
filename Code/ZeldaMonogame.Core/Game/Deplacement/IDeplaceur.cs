@@ -1,4 +1,5 @@
-﻿using MonoGame.Extended;
+﻿using Microsoft.Xna.Framework;
+using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,6 @@ namespace ZeldaMonogame.Core.Game.Deplacement
 {
     public interface IDeplaceur
     {
-        void DeplacerHaut(IMovable movable);
-        void DeplacerBas(IMovable movable);
-        void DeplacerGauche(IMovable movable);
-        void DeplacerDroite(IMovable movable);
-
+        void Deplacer(GameTime gameTime);
     }
 }
