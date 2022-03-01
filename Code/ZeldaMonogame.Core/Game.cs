@@ -8,6 +8,7 @@ using MonoGame.Extended.ViewportAdapters;
 using System;
 using MonoGame.Extended;
 using ZeldaMonogame.Core.Game;
+using MyoLib;
 
 namespace ZeldaMonogame
 {
@@ -20,6 +21,7 @@ namespace ZeldaMonogame
         private TiledMapRenderer _tiledMapRenderer;
         private CameraManager _cameraManager;
 
+        private MyoManager allo;
         public ZeldaMonogameGame()
         {
             _graphics = new GraphicsDeviceManager(this);
