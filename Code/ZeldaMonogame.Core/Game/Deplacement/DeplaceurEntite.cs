@@ -8,7 +8,7 @@ using ZeldaMonogame.Core.Game.Metier.Entites;
 
 namespace ZeldaMonogame.Core.Game.Deplacement
 {
-    public class DeplaceurEntite : IDeplaceur
+    public class DeplaceurEntite : Deplaceur
     {
         private static readonly int VITESSE = 200;
 
@@ -34,41 +34,21 @@ namespace ZeldaMonogame.Core.Game.Deplacement
             _mapHeight = height;
         }
 
-        public void Deplacer(GameTime gameTime)
+        protected override bool Move(Vector2 movement)
         {
-            var seconds = gameTime.GetElapsedSeconds();
-            var movementDirection = GetMovementDirection();
-
-            _entite.Position += VITESSE * movementDirection * seconds;
+            _entite.Position += movement;
+            return true;
+            // TODO Déplacer seulement s'il n'y a pas de collisions
         }
-        private Vector2 GetMovementDirection()
+
+        protected override int Speed => 200;
+
+        internal bool IsOutOfCameraOffsets(IDictionary<string, int> offsets)
         {
-            var movementDirection = Vector2.Zero;
-            var state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.S))
-            {
-                movementDirection += Vector2.UnitY;
-            }
-            if (state.IsKeyDown(Keys.Z))
-            {
-                movementDirection -= Vector2.UnitY;
-            }
-            if (state.IsKeyDown(Keys.Q))
-            {
-                movementDirection -= Vector2.UnitX;
-            }
-            if (state.IsKeyDown(Keys.D))
-            {
-                movementDirection += Vector2.UnitX;
-            }
+            var postion = _entite.Position;
 
-            // Can't normalize the zero vector so test for it before normalizing
-            if (movementDirection != Vector2.Zero)
-            {
-                movementDirection.Normalize();
-            }
-
-            return movementDirection;
+            return postion.X < offsets["miniX"]
+                || postion.X > offsets["maxiX"];
         }
     }
 }

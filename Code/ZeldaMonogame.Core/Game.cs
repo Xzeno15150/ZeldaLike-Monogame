@@ -41,7 +41,8 @@ namespace ZeldaMonogame
 
             _personnagePrincipal = new PersonnagePrincipal(this, null, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight/2), 60, 60); ;
             _deplaceurPersonnage = new DeplaceurEntite(_personnagePrincipal);
-            _cameraManager = new DeplaceurCamera(Window, GraphicsDevice, _personnagePrincipal);
+
+            _cameraManager = new DeplaceurCamera(Window, GraphicsDevice);
             IsMouseVisible = false;
             base.Initialize();
         }
