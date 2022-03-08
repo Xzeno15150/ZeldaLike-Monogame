@@ -1,17 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ZeldaMonogame.Core.Game.Metier.Entites
 {
-    public abstract class Personnage : Entite
+    public class Personnage : Entite
     {
-        public Personnage(Microsoft.Xna.Framework.Game game, Texture2D texture, Vector2 pos, int longueur, int hauteur) : base(game, texture, pos, longueur, hauteur)
-        {  
+        public Personnage(ZeldaMonogameGame game) : base(game)
+        {
+
         }
-
-
     }
 }

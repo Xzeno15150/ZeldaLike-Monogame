@@ -5,13 +5,18 @@
   <ItemGroup>
     <Compile Remove="Content\bin\**" />
     <Compile Remove="Content\obj\**" />
-    <Compile Remove="Game\Metier\Map\**" />
     <EmbeddedResource Remove="Content\bin\**" />
     <EmbeddedResource Remove="Content\obj\**" />
-    <EmbeddedResource Remove="Game\Metier\Map\**" />
     <None Remove="Content\bin\**" />
     <None Remove="Content\obj\**" />
-    <None Remove="Game\Metier\Map\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Content\Maps\tiledmaps\samplemap.tmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Maps\tiledmaps\samplemap.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
