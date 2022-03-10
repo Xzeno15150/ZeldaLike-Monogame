@@ -13,10 +13,17 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
     public class Joueur : Personnage
     {
         private int SPEED = 150;
+        private float SCALE = 2;
 
         private IGetterInput _getterInput;
 
-        public Joueur(ZeldaMonogameGame game, IGetterInput getterInput) : base(game)
+        public Joueur(ZeldaMonogameGame game, IGetterInput getterInput) : this(game, getterInput, 0, 0)
+        {
+            
+        }
+
+
+        public Joueur(ZeldaMonogameGame game, IGetterInput getterInput, float x, float y) : base(game, x, y)
         {
             _getterInput = getterInput;
         }
@@ -26,7 +33,12 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
             var seconds = gameTime.GetElapsedSeconds();
             Vector2 direction = _getterInput.GetDirection();
 
-            Position += SPEED * direction * seconds; 
+            Vector2 newPos = Position + SPEED * direction * seconds;
+
+            if(newPos.X > 0 && newPos.X < Game.Map.Width && newPos.Y > 0 && newPos.Y < Game.Map.Height)
+            {
+                Position = newPos;
+            } 
         }
 
         public void SetGetterInput(IGetterInput getterInput) => _getterInput = getterInput;
@@ -38,9 +50,12 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
 
         public override void Draw(GameTime gameTime)
         {
+            Vector2 screenPos = Game.Map.Camera.WorldToScreen(Position);
+
+            
+
             Game.SpriteBatch.Begin();
-            Game.SpriteBatch.Draw(Texture, Position, Color.Transparent);
-            // Game.Map.Camera.WorldToScreen(Position)
+            Game.SpriteBatch.Draw(Texture, new Vector2(screenPos.X - Texture.Width * SCALE / 2, screenPos.Y - Texture.Height * SCALE /2 ) , null, Color.White, 0f, Vector2.Zero, SCALE , SpriteEffects.None, 0f);
             Game.SpriteBatch.End();
 
             base.Draw(gameTime);

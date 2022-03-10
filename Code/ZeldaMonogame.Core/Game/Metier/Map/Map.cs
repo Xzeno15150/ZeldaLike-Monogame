@@ -20,6 +20,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         private ZeldaMonogameGame _game;
 
+
         public int Height { get; private set; }
         public int Width { get; private set; }
 
@@ -38,7 +39,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             _tiledMap = _game.Content.Load<TiledMap>($"Maps/tiledmaps/{Name}");
             _tileMapRenderer = new TiledMapRenderer(graphicsDevice, _tiledMap);
 
-            var viewPort = new BoxingViewportAdapter(gameWindow, graphicsDevice, (int)(graphicsDevice.Viewport.Bounds.Width), (int)(graphicsDevice.Viewport.Bounds.Height));
+            var viewPort = new BoxingViewportAdapter(gameWindow, graphicsDevice, graphicsDevice.Viewport.Bounds.Width /2, graphicsDevice.Viewport.Bounds.Height/2);
             Camera = new OrthographicCamera(viewPort);
 
             Width = _tiledMap.Width * _tiledMap.TileWidth;
@@ -47,22 +48,53 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         public void Update(GameTime gameTime)
         {
+            MoveCamera();
             _tileMapRenderer.Update(gameTime);
+        }
 
-            Vector2 position = Vector2.Zero;
-            //if (_game.PersonnagePrincipal.Position.X < Camera.)
-            Camera.LookAt(_game.PersonnagePrincipal.Position);
-            /*if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                Camera.ZoomIn(0.01f);
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                Camera.ZoomOut(0.01f);*/
+        private void MoveCamera()
+        {
+            Vector2 camPosition = Vector2.Zero;
+
+            float persoX = _game.PersonnagePrincipal.Position.X;
+            float persoY = _game.PersonnagePrincipal.Position.Y;
+
+            float camOffSetX = Camera.BoundingRectangle.Width / 2;
+            float camOffSetY = Camera.BoundingRectangle.Height / 2;
+
+            if (persoX < camOffSetX)
+            {
+                camPosition.X = camOffSetX;
+            }
+            else if (persoX > Width - camOffSetX)
+            {
+                camPosition.X = Width - camOffSetX;
+            }
+            else
+            {
+                camPosition.X = persoX;
+            }
+
+            if (persoY < camOffSetY)
+            {
+                camPosition.Y = camOffSetY;
+            }
+            else if (persoY > Height - camOffSetY)
+            {
+                camPosition.Y = Height - camOffSetY;
+            }
+            else
+            {
+                camPosition.Y = persoY;
+            }
+
+
+
+            Camera.LookAt(camPosition);
         }
 
         public void Draw(GameTime gameTime, GraphicsDevice graphicsDevice)
         {
-            graphicsDevice.Clear(Color.Black);
-            graphicsDevice.BlendState = BlendState.AlphaBlend;
-
             _game.SpriteBatch.Begin();
             _tileMapRenderer.Draw(Camera.GetViewMatrix());
             _game.SpriteBatch.End();

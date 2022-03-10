@@ -29,18 +29,20 @@ namespace ZeldaMonogame
             IsMouseVisible = true;
 
             
-
-
-
             Entites = new List<Entite>();
 
-            PersonnagePrincipal = new Joueur(this, new InputKeyboard());
+            PersonnagePrincipal = new Joueur(this, new InputKeyboard(), 500, 400);
             Entites.Add(PersonnagePrincipal);
             Map = new Map(this, "samplemap");
         }
 
         protected override void Initialize()
         {
+            /*_graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            _graphics.IsFullScreen = true;
+            _graphics.ApplyChanges();*/
+
             base.Initialize();
         }
         
@@ -74,15 +76,13 @@ namespace ZeldaMonogame
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Aquamarine);
+            GraphicsDevice.Clear(Color.Black);
 
             Map.Draw(gameTime, GraphicsDevice);
-            /*foreach (Entite e in Entites)
+            foreach (Entite e in Entites)
             {
                 e.Draw(gameTime);
-            }*/
-
-            PersonnagePrincipal.Draw(gameTime);
+            }
             base.Draw(gameTime);
         }
     }

@@ -17,7 +17,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
 
         public Vector2 Position { get => _position; set => _position = value; }
 
-        public Entite(ZeldaMonogameGame game, int x, int y) : base(game)
+        public Entite(ZeldaMonogameGame game, float x, float y) : base(game)
         {
             Game = game;
             _position.X = x;

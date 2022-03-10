@@ -9,7 +9,11 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
 {
     public abstract class Personnage : Entite
     {
-        public Personnage(ZeldaMonogameGame game) : base(game)
+        public Personnage(ZeldaMonogameGame game) : this(game, 0, 0)
+        {
+        }
+
+        public Personnage(ZeldaMonogameGame game, float x, float y) : base(game, x, y)
         {
 
         }
