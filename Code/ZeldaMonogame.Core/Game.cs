@@ -7,21 +7,20 @@ using ZeldaMonogame.Core.Game;
 using MyoLib;
 using ZeldaMonogame.Core.Game.Metier.Entites;
 using ZeldaMonogame.Core.Game.Metier.Map;
+using ZeldaMonogame.Core.Game.Metier.Input;
+using System.Collections.Generic;
 
 namespace ZeldaMonogame
 {
     public class ZeldaMonogameGame : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-
-        private TiledMap _tiledMap;
-        private TiledMapRenderer _tiledMapRenderer;
-
-
-        public PersonnagePrincipal PersonnagePrincipal { get; set; }
+        
+        public Joueur PersonnagePrincipal { get; }
+        public IList<Entite> Entites { get; set; }
 
         public Map Map { get; set; }
+        public SpriteBatch SpriteBatch { get; set; }
 
         public ZeldaMonogameGame()
         {
@@ -29,27 +28,33 @@ namespace ZeldaMonogame
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            PersonnagePrincipal = new PersonnagePrincipal(this);
+            
+
+
+
+            Entites = new List<Entite>();
+
+            PersonnagePrincipal = new Joueur(this, new InputKeyboard());
+            Entites.Add(PersonnagePrincipal);
             Map = new Map(this, "samplemap");
         }
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            _graphics.ApplyChanges();
-
-            
             base.Initialize();
         }
         
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            GraphicsDevice.BlendState = BlendState.AlphaBlend;
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
+            foreach (Entite e in Entites) {
+                e.LoadContent(GraphicsDevice, Window);
+            }
             Map.LoadContent(GraphicsDevice, Window);
-            //_deplaceurPersonnage.SetMapTaille(_tiledMap.Width * _tiledMap.TileWidth, _tiledMap.Height * _tiledMap.TileHeight);
+           
         }
 
         protected override void Update(GameTime gameTime)
@@ -57,13 +62,27 @@ namespace ZeldaMonogame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            Map.Update(gameTime);
+
+            foreach(Entite e in Entites)
+            {
+                e.Update(gameTime);
+            }
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            Map.Draw(gameTime, GraphicsDevice, _spriteBatch);
-            
+            GraphicsDevice.Clear(Color.Aquamarine);
+
+            Map.Draw(gameTime, GraphicsDevice);
+            /*foreach (Entite e in Entites)
+            {
+                e.Draw(gameTime);
+            }*/
+
+            PersonnagePrincipal.Draw(gameTime);
             base.Draw(gameTime);
         }
     }
