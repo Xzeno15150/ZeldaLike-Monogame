@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeldaMonogame.DesktopGL", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeldaMonogame.WindowsDX", "..\ZeldaMonogame.WindowsDX\ZeldaMonogame.WindowsDX.csproj", "{34440E0D-455B-4266-B418-04A9C85F2C11}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopGL", "..\Apos.Gui\Example\Platforms\DesktopGL\DesktopGL.csproj", "{43200104-BF7A-4106-9202-4E8F0DD9BFFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{34440E0D-455B-4266-B418-04A9C85F2C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34440E0D-455B-4266-B418-04A9C85F2C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34440E0D-455B-4266-B418-04A9C85F2C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43200104-BF7A-4106-9202-4E8F0DD9BFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43200104-BF7A-4106-9202-4E8F0DD9BFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43200104-BF7A-4106-9202-4E8F0DD9BFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43200104-BF7A-4106-9202-4E8F0DD9BFFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
