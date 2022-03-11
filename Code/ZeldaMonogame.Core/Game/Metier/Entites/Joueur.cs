@@ -35,7 +35,8 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
 
             Vector2 newPos = Position + SPEED * direction * seconds;
 
-            if(newPos.X > 0 && newPos.X < Game.Map.Width && newPos.Y > 0 && newPos.Y < Game.Map.Height)
+            if(!Game.Map.IsOnCollisionTile((ushort)newPos.X, (ushort)newPos.Y) 
+                && newPos.X > 0 && newPos.X < Game.Map.Width && newPos.Y > 0 && newPos.Y < Game.Map.Height)
             {
                 Position = newPos;
             } 
@@ -51,8 +52,6 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
         public override void Draw(GameTime gameTime)
         {
             Vector2 screenPos = Game.Map.Camera.WorldToScreen(Position);
-
-            
 
             Game.SpriteBatch.Begin();
             Game.SpriteBatch.Draw(Texture, new Vector2(screenPos.X - Texture.Width * SCALE / 2, screenPos.Y - Texture.Height * SCALE /2 ) , null, Color.White, 0f, Vector2.Zero, SCALE , SpriteEffects.None, 0f);
