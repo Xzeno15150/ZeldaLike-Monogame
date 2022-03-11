@@ -5,74 +5,81 @@ using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using ZeldaMonogame.Core.Game;
 using MyoLib;
-using ZeldaMonogame.Core.Game.Deplacement;
 using ZeldaMonogame.Core.Game.Metier.Entites;
-using ZeldaMonogame.Core.Game.Map;
+using ZeldaMonogame.Core.Game.Metier.Map;
+using ZeldaMonogame.Core.Game.Metier.Input;
+using System.Collections.Generic;
 
 namespace ZeldaMonogame
 {
     public class ZeldaMonogameGame : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        
+        public Joueur PersonnagePrincipal { get; }
+        public IList<Entite> Entites { get; set; }
 
+        public Map Map { get; set; }
+        public SpriteBatch SpriteBatch { get; set; }
 
-        private PersonnagePrincipal _personnagePrincipal;
-        private DeplaceurEntite _deplaceurPersonnage;
-        private GestionnaireMap _gestionnaireMap;
-
-        private MyoManager allo;
         public ZeldaMonogameGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            
+            Entites = new List<Entite>();
+
+            PersonnagePrincipal = new Joueur(this, new InputKeyboard(), 500, 400);
+            Entites.Add(PersonnagePrincipal);
+            Map = new Map(this, "samplemap");
         }
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            /*_graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             _graphics.IsFullScreen = true;
-            _graphics.ApplyChanges();
+            _graphics.ApplyChanges();*/
 
-            GraphicsDevice.SamplerStates[0] = SamplerState.PointClamp;
-
-            _personnagePrincipal = new PersonnagePrincipal(this, null, new Vector2(_graphics.PreferredBackBufferWidth/2, _graphics.PreferredBackBufferHeight/2), 60, 60); ;
-            _deplaceurPersonnage = new DeplaceurEntite(_personnagePrincipal);
-            _gestionnaireMap = new GestionnaireMap(GraphicsDevice,Content);
-            _gestionnaireMap.SetCameraManager(Window, _personnagePrincipal);
             IsMouseVisible = false;
             base.Initialize();
         }
 
-
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _gestionnaireMap.LoadMap("samplemap");
+            GraphicsDevice.BlendState = BlendState.AlphaBlend;
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _personnagePrincipal.SetTexture(Content.Load<Texture2D>("Assets/Character/Main/idle_down3"));
-            _deplaceurPersonnage.SetMapTaille(_gestionnaireMap.TiledMap.Width * _gestionnaireMap.TiledMap.TileWidth, _gestionnaireMap.TiledMap.Height * _gestionnaireMap.TiledMap.TileHeight);
+            foreach (Entite e in Entites) {
+                e.LoadContent(GraphicsDevice, Window);
+            }
+            Map.LoadContent(GraphicsDevice, Window);
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            Map.Update(gameTime);
 
-            _gestionnaireMap.UpdateMap(gameTime);
-            _deplaceurPersonnage.Deplacer(gameTime);
+            foreach(Entite e in Entites)
+            {
+                e.Update(gameTime);
+            }
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            GraphicsDevice.BlendState = BlendState.AlphaBlend;
-
-            _gestionnaireMap.DrawMap();
-            _personnagePrincipal.Draw(gameTime);
+            Map.Draw(gameTime, GraphicsDevice);
+            foreach (Entite e in Entites)
+            {
+                e.Draw(gameTime);
+            }
             base.Draw(gameTime);
         }
     }
