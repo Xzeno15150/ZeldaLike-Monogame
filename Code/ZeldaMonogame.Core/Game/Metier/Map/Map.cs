@@ -20,6 +20,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         private ZeldaMonogameGame _game;
 
+        private readonly int ZOOM = 2;
 
         public int Height { get; private set; }
         public int Width { get; private set; }
@@ -39,7 +40,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             _tiledMap = _game.Content.Load<TiledMap>($"Maps/tiledmaps/{Name}");
             _tileMapRenderer = new TiledMapRenderer(graphicsDevice, _tiledMap);
 
-            var viewPort = new BoxingViewportAdapter(gameWindow, graphicsDevice, graphicsDevice.Viewport.Bounds.Width /2, graphicsDevice.Viewport.Bounds.Height/2);
+            var viewPort = new BoxingViewportAdapter(gameWindow, graphicsDevice, graphicsDevice.Viewport.Bounds.Width / ZOOM, graphicsDevice.Viewport.Bounds.Height / ZOOM);
             Camera = new OrthographicCamera(viewPort);
 
             Width = _tiledMap.Width * _tiledMap.TileWidth;
@@ -49,7 +50,15 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
         public void Update(GameTime gameTime)
         {
             MoveCamera();
+            
             _tileMapRenderer.Update(gameTime);
+        }
+
+        public bool IsOnCollisionTile(ushort x, ushort y)
+        {
+            TiledMapTileLayer collisionsLayer = (TiledMapTileLayer) _tiledMap.GetLayer("collisions");
+
+            return !collisionsLayer.GetTile((ushort)(x / _tiledMap.TileWidth), (ushort)(y / _tiledMap.TileHeight)).IsBlank;
         }
 
         private void MoveCamera()
