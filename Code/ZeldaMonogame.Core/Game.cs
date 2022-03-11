@@ -31,7 +31,7 @@ namespace ZeldaMonogame
             
             Entites = new List<Entite>();
 
-            PersonnagePrincipal = new Joueur(this, new InputKeyboard(), 14*32, 11*32);
+            PersonnagePrincipal = new Joueur(this, new InputMyo(), 14*32, 11*32);
             Entites.Add(PersonnagePrincipal);
             Map = new Map(this, "samplemap");
         }

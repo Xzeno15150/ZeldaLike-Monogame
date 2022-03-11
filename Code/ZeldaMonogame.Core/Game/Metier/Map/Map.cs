@@ -29,7 +29,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         public OrthographicCamera Camera { get; set; }
            
-        public Map(ZeldaMonogameGame game, String name)
+        public Map(ZeldaMonogameGame game, string name)
         {
             _game = game;
             Name = name;
@@ -96,8 +96,6 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             {
                 camPosition.Y = persoY;
             }
-
-
 
             Camera.LookAt(camPosition);
         }
