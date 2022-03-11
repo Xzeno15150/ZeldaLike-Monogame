@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace ZeldaMonogame.Core.Game.Metier.Input
 {
+    /// <summary>
+    /// Classe qui gère les entrées du clavier
+    /// </summary>
     public class InputKeyboard : IGetterInput
     {
+        /// <summary>
+        /// Retourne un vecteur correspondant à la direction pointée
+        /// </summary>
+        /// <returns>Vector2</returns>
         public Vector2 GetDirection()
         {
             var state = Keyboard.GetState();

@@ -8,80 +8,56 @@ using static System.Console;
 
 namespace ZeldaMonogame.Core.Game.Metier.Input
 {
+    /// <summary>
+    /// Classe qui gère les du bracelet Myo
+    /// </summary>
     class InputMyo : IGetterInput
     {
-        private MyoManager myoManager;
+        private MyoManager myoManager; //Manager qui gère le bracelet
+        private Pose current_pose; //Pose actuelle
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
         public InputMyo()
         {
             myoManager = new MyoManager();
             myoManager.Init();
-            //mgr.UnlockAll(MyoSharp.Device.UnlockType.Hold);
-            // mgr.MyoConnected += Mgr_MyoConnected;
-            //mgr.MyoLocked += Mgr_MyoLocked;
-            //mgr.MyoUnlocked += Mgr_MyoUnlocked;
-            //mgr.PoseChanged += Mgr_PoseChanged;
-            //mgr.HeldPoseTriggered += Mgr_HeldPoseTriggered;
-            //mgr.PoseSequenceCompleted += Mgr_PoseSequenceCompleted;
-            myoManager.MyoConnected += Mgr_MyoConnected1;
-            myoManager.StartListening();
-            ReadKey();
+            myoManager.PoseChanged += Mgr_PoseChanged; //Ajoute l'event Mgr_PoseChanged
         }
 
-        private void Mgr_MyoConnected1(object sender, MyoSharp.Device.MyoEventArgs e)
-        {
-            myoManager.SubscribeToAccelerometerData(0, (source, args) => {
-                if (e.Myo.Pose != Pose.Unknown)
-                {
-                    WriteLine($"{traductions[e.Myo.Pose]}");
-                }
-            }
-            );
-        }
-
-        private void Mgr_PoseSequenceCompleted(object sender, PoseSequenceEventArgs e)
-        {
-            WriteLine($"Sequence completed : {e.Poses.Select(p => p.ToString()).Aggregate("", (chaine, s) => $"{chaine} {s}")}");
-        }
-
-        private Dictionary<Pose, string> traductions = new Dictionary<Pose, string>()
-        {
-            [Pose.Fist] = "Vers le bas",
-            [Pose.FingersSpread] = "Vers la haut",
-            [Pose.WaveOut] = "Vers la droite",
-            [Pose.WaveIn] = "Vers la gauche",
-            [Pose.DoubleTap] = "Anything",
-            [Pose.Rest] = "Immobile"
-        };
-
-        private void Mgr_HeldPoseTriggered(object sender, MyoSharp.Device.PoseEventArgs e)
-        {
-            WriteLine($"HeldPose : {traductions[e.Pose]}");
-        }
-
+        /// <summary>
+        /// Capture la nouvelle pose de l'utilisateur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Mgr_PoseChanged(object sender, MyoSharp.Device.PoseEventArgs e)
         {
-            WriteLine($"{traductions[e.Pose]}");
+            current_pose = e.Pose;
         }
 
-        private void Mgr_MyoUnlocked(object sender, MyoSharp.Device.MyoEventArgs e)
-        {
-            WriteLine($"{e.Myo} has been unlocked");
-        }
-
-        private void Mgr_MyoLocked(object sender, MyoSharp.Device.MyoEventArgs e)
-        {
-            WriteLine($"{e.Myo} has been locked");
-        }
-
-        private async void Mgr_MyoConnected(object sender, MyoSharp.Device.MyoEventArgs e)
-        {
-            WriteLine($"{e.Myo} connected ({e.Myo.Arm}, {e.Myo.Handle})");
-            myoManager.Unlock(MyoSharp.Device.UnlockType.Hold);
-        }
+        /// <summary>
+        /// Retourne un vecteur correspondant à la direction pointée
+        /// </summary>
+        /// <returns>Vector2</returns>
         public Vector2 GetDirection()
         {
-            throw new NotImplementedException();
+            myoManager.UnlockAll(MyoSharp.Device.UnlockType.Hold); //Dévérouille le bracelet Myo
+            myoManager.StartListening(); //Ecoute le changement de pose
+            
+            if (current_pose == Pose.FingersSpread) //FingerSpread -> déplacement en haut
+                return new Vector2(0, -1);
+
+            if (current_pose == Pose.Fist) //Fist -> Déplacement vers le bas
+                return new Vector2(0, 1);
+
+            if (current_pose == Pose.WaveIn) //WaveIn -> Déplacement vers la gauche
+                return new Vector2(-1, 0);
+
+            if (current_pose == Pose.WaveOut) //WaveOut -> Déplacement vers la droite
+                return new Vector2(1, 0);
+
+            return Vector2.Zero;
         }
     }
 }
