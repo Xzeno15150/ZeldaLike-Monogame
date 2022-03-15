@@ -12,9 +12,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Content\Maps\tiledmaps\samplemap.tmx" />
+    <None Remove="Font\source-code-pro-medium.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Maps\tiledmaps\samplemap.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Font\source-code-pro-medium.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

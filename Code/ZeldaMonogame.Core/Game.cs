@@ -14,6 +14,7 @@ using Apos.Gui;
 using MonoGame.Extended.TextureAtlases;
 using Apos.Input;
 using System;
+using ZeldaMonogame.Core.Game.Menu;
 
 namespace ZeldaMonogame
 {
@@ -25,12 +26,10 @@ namespace ZeldaMonogame
         public IList<Entite> Entites { get; set; }
 
         public Map Map { get; set; }
+        public Menu Menu { get; set; }
+
         public SpriteBatch SpriteBatch { get; set; }
 
-        private IMGUI _ui;
-        private TextureRegion2D _apos;
-        private string _name = "no name";
-        private float _slider = 0.5f;
         public ZeldaMonogameGame()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -40,7 +39,7 @@ namespace ZeldaMonogame
             
             Entites = new List<Entite>();
 
-            PersonnagePrincipal = new Joueur(this, new InputMyo(), 14*32, 11*32);
+            PersonnagePrincipal = new Joueur(this, new InputKeyboard(), 14*32, 11*32);
             Entites.Add(PersonnagePrincipal);
             Map = new Map(this, "samplemap");
         }
@@ -65,20 +64,7 @@ namespace ZeldaMonogame
                 e.LoadContent(GraphicsDevice, Window);
             }
             Map.LoadContent(GraphicsDevice, Window);
-
-
-
-
-            FontSystem fontSystem = FontSystemFactory.Create(GraphicsDevice, 2048, 2048);
-            fontSystem.AddFont(TitleContainer.OpenStream($"{Content.RootDirectory}/source-code-pro-medium.ttf"));
-
-            GuiHelper.Setup(this, fontSystem);
-            _ui = new IMGUI();
-            GuiHelper.CurrentIMGUI = _ui;
-
-            var texture = Content.Load<Texture2D>("apos");
-
-            _apos = new TextureRegion2D(texture, 0, 0, texture.Width, texture.Height);
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -102,14 +88,7 @@ namespace ZeldaMonogame
 
             _ui.UpdateAll(gameTime);
 
-            MenuPanel.Push().XY = new Vector2(100, 100);
-            if (_menu == Menu.Main)
-            {
-                Label.Put("Main Menu");
-                Label.Put($"Your name is '{_name}'");
-                if (Button.Put("Settings").Clicked) _menu = Menu.Settings;
-                if (Button.Put("Quit").Clicked) _menu = Menu.Quit;
-            }
+            
             else if (_menu == Menu.Settings)
             {
                 Label.Put("What is your name?");
@@ -135,20 +114,16 @@ namespace ZeldaMonogame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            Map.Draw(gameTime, GraphicsDevice);
+            /*Map.Draw(gameTime, GraphicsDevice);
             foreach (Entite e in Entites)
             {
                 e.Draw(gameTime);
-            }
+            }*/
+            ;
             base.Draw(gameTime);
         }
 
-        enum Menu
-        {
-            Main,
-            Settings,
-            Quit
-        }
+        
         Menu _menu = Menu.Main;
 
         ICondition _quit =
