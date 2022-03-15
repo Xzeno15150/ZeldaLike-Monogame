@@ -28,9 +28,9 @@ namespace ZeldaMonogame.Core.Game.Metier.Entites
         {
         }
 
-        public abstract void Update(GameTime gameTime);
-
         public abstract void LoadContent(GraphicsDevice graphicsDevice, GameWindow gameWindow);
+
+        public abstract void Draw(GameTime gameTime, Vector2 screenPos);
 
     }
 }

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZeldaMonogame.Core.Game.Metier.Events;
 
 namespace ZeldaMonogame.Core.Game.Metier.Map
 {
@@ -20,6 +21,8 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         private ZeldaMonogameGame _game;
 
+        private List<Event> _mapEvents;
+
         private readonly int ZOOM = 2;
 
         public int Height { get; private set; }
@@ -29,11 +32,15 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         public OrthographicCamera Camera { get; set; }
            
-        public Map(ZeldaMonogameGame game, string name)
+        public Map(ZeldaMonogameGame game, string name, List<Event> events)
         {
             _game = game;
             Name = name;
+            _mapEvents = events;
         }
+
+        public Map(ZeldaMonogameGame game, string name) : this(game, name, new List<Event>()) { }
+
 
         public void LoadContent(GraphicsDevice graphicsDevice, GameWindow gameWindow)
         {
@@ -49,8 +56,6 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         public void Update(GameTime gameTime)
         {
-            MoveCamera();
-            
             _tileMapRenderer.Update(gameTime);
         }
 
@@ -61,40 +66,40 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             return !collisionsLayer.GetTile((ushort)(x / _tiledMap.TileWidth), (ushort)(y / _tiledMap.TileHeight)).IsBlank;
         }
 
-        private void MoveCamera()
+        public void MoveCamera(Vector2 position)
         {
             Vector2 camPosition = Vector2.Zero;
 
-            float persoX = _game.PersonnagePrincipal.Position.X;
-            float persoY = _game.PersonnagePrincipal.Position.Y;
+            float x = position.X;
+            float y = position.Y;
 
             float camOffSetX = Camera.BoundingRectangle.Width / 2;
             float camOffSetY = Camera.BoundingRectangle.Height / 2;
 
-            if (persoX < camOffSetX)
+            if (x < camOffSetX)
             {
                 camPosition.X = camOffSetX;
             }
-            else if (persoX > Width - camOffSetX)
+            else if (x > Width - camOffSetX)
             {
                 camPosition.X = Width - camOffSetX;
             }
             else
             {
-                camPosition.X = persoX;
+                camPosition.X = x;
             }
 
-            if (persoY < camOffSetY)
+            if (y < camOffSetY)
             {
                 camPosition.Y = camOffSetY;
             }
-            else if (persoY > Height - camOffSetY)
+            else if (y > Height - camOffSetY)
             {
                 camPosition.Y = Height - camOffSetY;
             }
             else
             {
-                camPosition.Y = persoY;
+                camPosition.Y = y;
             }
 
             Camera.LookAt(camPosition);
