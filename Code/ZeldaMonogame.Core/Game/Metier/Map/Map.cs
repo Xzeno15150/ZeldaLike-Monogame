@@ -5,8 +5,10 @@ using MonoGame.Extended;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using MonoGame.Extended.ViewportAdapters;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,19 +34,45 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         public OrthographicCamera Camera { get; set; }
            
-        public Map(ZeldaMonogameGame game, string name, List<Event> events)
+        public Map(ZeldaMonogameGame game, string name)
         {
             _game = game;
             Name = name;
-            _mapEvents = events;
+            LoadEvents(game);
         }
 
-        public Map(ZeldaMonogameGame game, string name) : this(game, name, new List<Event>()) { }
+        private void LoadEvents(ZeldaMonogameGame game)
+        {
+            _mapEvents = new List<Event>();
+            JsonSerializer jsonSerializer = new JsonSerializer();
 
+            StreamReader streamReader = new StreamReader($"Content/Maps/tiledmaps/{Name}/Events.json");
+
+            using(JsonTextReader jsonTextReader = new JsonTextReader(streamReader))
+            {
+                var allEvents = jsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonTextReader);
+
+                if (allEvents == null) return;
+
+                foreach (Dictionary<string, string> e in allEvents)
+                {
+                    switch (e["class"])
+                    {
+                        case "TeleportationEvent":
+                            _mapEvents.Add(new TeleportationEvent(game,
+                                                                  int.Parse(e["xOldMap"]), int.Parse(e["yOldMap"]),
+                                                                  e["nameNewMap"], int.Parse(e["xNewMap"]), int.Parse(e["yNewMap"])));
+                            break;
+                    }
+
+                }
+
+            }
+        }
 
         public void LoadContent(GraphicsDevice graphicsDevice, GameWindow gameWindow)
         {
-            _tiledMap = _game.Content.Load<TiledMap>($"Maps/tiledmaps/{Name}");
+            _tiledMap = _game.Content.Load<TiledMap>($"Maps/tiledmaps/{Name}/{Name}");
             _tileMapRenderer = new TiledMapRenderer(graphicsDevice, _tiledMap);
 
             var viewPort = new BoxingViewportAdapter(gameWindow, graphicsDevice, graphicsDevice.Viewport.Bounds.Width / ZOOM, graphicsDevice.Viewport.Bounds.Height / ZOOM);

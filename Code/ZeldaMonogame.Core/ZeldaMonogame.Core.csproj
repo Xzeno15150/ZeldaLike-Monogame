@@ -5,16 +5,31 @@
   <ItemGroup>
     <Compile Remove="Content\bin\**" />
     <Compile Remove="Content\obj\**" />
+    <Compile Remove="Game\Metier\Events\AutoEvent\**" />
     <EmbeddedResource Remove="Content\bin\**" />
     <EmbeddedResource Remove="Content\obj\**" />
+    <EmbeddedResource Remove="Game\Metier\Events\AutoEvent\**" />
     <None Remove="Content\bin\**" />
     <None Remove="Content\obj\**" />
+    <None Remove="Game\Metier\Events\AutoEvent\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Content\Animations\player.png" />
+    <None Remove="Content\Animations\player.sf" />
+    <None Remove="Content\Maps\tiledmaps\Main\Events.json" />
     <None Remove="Content\Maps\tiledmaps\samplemap.tmx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Maps\tiledmaps\samplemap.tmx">
+    <Content Include="Content\Animations\player.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Animations\player.sf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Maps\tiledmaps\Main\Main.tmx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Maps\tiledmaps\Main\Events.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

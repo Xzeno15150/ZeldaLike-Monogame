@@ -22,8 +22,6 @@ namespace ZeldaMonogame
         
         public Joueur PersonnagePrincipal { get; }
         public IList<Entite> Entites { get; set; }
-
-        public MapFactory _mapFactory;
         
 
         public Map Map { get; set; }
@@ -32,7 +30,6 @@ namespace ZeldaMonogame
 
         public ZeldaMonogameGame()
         {
-            _mapFactory = new MapFactory(this);
 
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -44,7 +41,7 @@ namespace ZeldaMonogame
             PersonnagePrincipal = new Joueur(this, 14*32, 11*32);
             Entites.Add(PersonnagePrincipal);
 
-            Map = new Map(this, "samplemap");
+            Map = new Map(this, "Main");
 
             _deplaceurJoueur = new DeplaceurJoueur(Map, PersonnagePrincipal, new InputKeyboard());
 
