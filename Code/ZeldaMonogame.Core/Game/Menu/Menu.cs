@@ -12,18 +12,17 @@ namespace ZeldaMonogame.Core.Game.Menu
 {
     public abstract class Menu
     {
+        protected ZeldaMonogameGame game;
         protected IMGUI _ui;
-        protected FontSystem fontSystem;
         protected string _name = "Saito";
-        private float _slider = 0.5f;
 
 
         
-        public abstract void Update(ZeldaMonogameGame game);
+        public abstract void Update(GameTime gameTime);
 
-        public void DrawMenu(GameTime gameTime)
+        public virtual void DrawMenu(GameTime gameTime)
         {
-            _ui.Draw(gameTime)
+            _ui.Draw(gameTime);
         }
     }
 }

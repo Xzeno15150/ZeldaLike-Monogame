@@ -21,13 +21,14 @@ namespace ZeldaMonogame
     public class ZeldaMonogameGame : Game
     {
         private GraphicsDeviceManager _graphics;
-        
+
         public Joueur PersonnagePrincipal { get; }
         public IList<Entite> Entites { get; set; }
 
         public Map Map { get; set; }
         public Menu Menu { get; set; }
 
+        private IMGUI _ui;
         public SpriteBatch SpriteBatch { get; set; }
 
         public ZeldaMonogameGame()
@@ -36,10 +37,10 @@ namespace ZeldaMonogame
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            
+
             Entites = new List<Entite>();
 
-            PersonnagePrincipal = new Joueur(this, new InputKeyboard(), 14*32, 11*32);
+            PersonnagePrincipal = new Joueur(this, new InputKeyboard(), 14 * 32, 11 * 32);
             Entites.Add(PersonnagePrincipal);
             Map = new Map(this, "samplemap");
         }
@@ -51,7 +52,10 @@ namespace ZeldaMonogame
             _graphics.IsFullScreen = true;
             _graphics.ApplyChanges();*/
 
-            IsMouseVisible = false;
+            _graphics.PreferredBackBufferWidth = 1000;
+            _graphics.PreferredBackBufferHeight = 700;
+
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -60,79 +64,40 @@ namespace ZeldaMonogame
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            foreach (Entite e in Entites) {
+            foreach (Entite e in Entites)
+            {
                 e.LoadContent(GraphicsDevice, Window);
             }
             Map.LoadContent(GraphicsDevice, Window);
-            
+
+            FontSystem fontSystem = FontSystemFactory.Create(GraphicsDevice, 2048, 2048);
+            fontSystem.AddFont(TitleContainer.OpenStream("Font/source-code-pro-medium.ttf"));
+
+            GuiHelper.Setup(this, fontSystem);
+            _ui = new IMGUI();
+            GuiHelper.CurrentIMGUI = _ui;
+
+            Menu = new MainMenu(this, _ui);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (false)
-            {
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    Exit();
-                Map.Update(gameTime);
-
-                foreach (Entite e in Entites)
-                {
-                    e.Update(gameTime);
-                }
-            }
-
             GuiHelper.UpdateSetup(gameTime);
-
-            if (_quit.Pressed())
-                Exit();
-
             _ui.UpdateAll(gameTime);
-
-            
-            else if (_menu == Menu.Settings)
-            {
-                Label.Put("What is your name?");
-                Textbox.Put(ref _name);
-                Slider.Put(ref _slider, 0f, 1f, 0.1f);
-                Label.Put($"{Math.Round(_slider, 3)}");
-                Icon.Put(_apos);
-                if (Button.Put("Back").Clicked) _menu = Menu.Main;
-            }
-            else if (_menu == Menu.Quit)
-            {
-                Label.Put("Quit Menu");
-                if (Button.Put("Yes").Clicked) Exit();
-                if (Button.Put("No").Clicked) _menu = Menu.Main;
-            }
-            MenuPanel.Pop();
-
             GuiHelper.UpdateCleanup();
+
+            Menu.Update(gameTime);
             base.Update(gameTime);
         }
-        
+
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            /*Map.Draw(gameTime, GraphicsDevice);
-            foreach (Entite e in Entites)
-            {
-                e.Draw(gameTime);
-            }*/
-            ;
+            GraphicsDevice.Clear(Color.DarkOliveGreen);
+            
+            Menu.DrawMenu(gameTime);
             base.Draw(gameTime);
         }
-
-        
-        Menu _menu = Menu.Main;
-
-        ICondition _quit =
-            new AnyCondition(
-                new KeyboardCondition(Keys.Escape),
-                new GamePadCondition(GamePadButton.Back, 0)
-            );
-
-        int _counter = 0;
 
     }
 }

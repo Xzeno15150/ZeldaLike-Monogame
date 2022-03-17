@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>Example</AssemblyName>
     <MonoGamePlatform>DesktopGl</MonoGamePlatform>
     <PublishTrimmed>true</PublishTrimmed>
