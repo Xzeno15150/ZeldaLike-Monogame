@@ -26,9 +26,12 @@ namespace ZeldaMonogame
         public IList<Entite> Entites { get; set; }
 
         public Map Map { get; set; }
+        public IGetterInput GetterInput { get; set; }
         public Menu Menu { get; set; }
 
         private IMGUI _ui;
+        private string userName = "Saito";
+
         public SpriteBatch SpriteBatch { get; set; }
 
         public ZeldaMonogameGame()
@@ -40,7 +43,8 @@ namespace ZeldaMonogame
 
             Entites = new List<Entite>();
 
-            PersonnagePrincipal = new Joueur(this, new InputKeyboard(), 14 * 32, 11 * 32);
+            GetterInput = new InputKeyboard();
+            PersonnagePrincipal = new Joueur(this, GetterInput, 14 * 32, 11 * 32);
             Entites.Add(PersonnagePrincipal);
             Map = new Map(this, "samplemap");
         }
@@ -77,7 +81,7 @@ namespace ZeldaMonogame
             _ui = new IMGUI();
             GuiHelper.CurrentIMGUI = _ui;
 
-            Menu = new MainMenu(this, _ui);
+            Menu = new MainMenu(this, _ui, userName);
         }
 
         protected override void Update(GameTime gameTime)

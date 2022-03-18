@@ -7,24 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZeldaMonogame.Core.Game.Metier.Input;
 
 namespace ZeldaMonogame.Core.Game.Menu
 {
     public class SettingsMenu : Menu
     {
-        private float _slider = 0.5f;
 
-        public SettingsMenu( ZeldaMonogameGame gameZelda,IMGUI ui)
+        public SettingsMenu(ZeldaMonogameGame gameZelda,IMGUI ui, string name)
         {
-            game = gameZelda;
+            _game = gameZelda;
             _ui = ui;
+            _name = name;
         }
 
         public override void Update(GameTime gameTime)
         {
             MenuPanel.Push().XY = new Vector2(100, 100);
             Label.Put("What is your name?",30, Color.White);
-            Textbox.Put(ref _name);
+            Textbox textBox = Textbox.Put(ref _name);
 
             bool choix1 = false, choix2 = false;
             Label.Put("Choose the device : ", 30, Color.White);
@@ -32,12 +33,32 @@ namespace ZeldaMonogame.Core.Game.Menu
             Horizontal.Push().XY = new Vector2(10, 10);
             Checkbox.Put(ref choix1);
             Label.Put("Keyboard", 30, Color.White);
-            Horizontal.Push();
             Checkbox.Put(ref choix2);
             Label.Put("Myo Armband", 30, Color.White);
+
+            
+                if (choix1) //Si le joueur a sélectionné le clavier
+                {
+                    if (_game.GetterInput is not InputKeyboard) //s'il n'est pas déjà instancié
+                    {
+                        _game.GetterInput = new InputKeyboard();
+                    }
+                }
+
+                if (choix2) //Si le joueur a sélectionné le bracelet myo
+                {
+                    if (_game.GetterInput is not InputMyo) //s'il n'est pas déjà instancié
+                    {
+                        _game.GetterInput = new InputMyo();
+                    }
+                }
             
 
-            if (Button.Put("Back", 30, Color.White).Clicked) game.Menu = new MainMenu(game, _ui);
+            if (Button.Put("Back", 30, Color.White).Clicked)
+            {
+                 _game.Menu = new MainMenu(_game, _ui, _name);
+            }
+            _name = textBox.Text; //On récupère le nouveau pseudo
             MenuPanel.Pop();
         }
     }

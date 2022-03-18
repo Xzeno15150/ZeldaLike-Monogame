@@ -12,18 +12,19 @@ namespace ZeldaMonogame.Core.Game.Menu
 {
     class QuitMenu : Menu
     {
-        public QuitMenu(ZeldaMonogameGame gameZelda, IMGUI ui)
+        public QuitMenu(ZeldaMonogameGame gameZelda, IMGUI ui, string name)
         {
-            game = gameZelda;
+            _game = gameZelda;
             _ui = ui;
+            _name = name;
         }
 
         public override void Update(GameTime gameTime)
         {
             MenuPanel.Push().XY = new Vector2(100, 100);
-            Label.Put("Quit Menu");
-            if (Button.Put("Yes", 30, Color.White).Clicked) game.Exit();
-            if (Button.Put("No", 30, Color.White).Clicked) game.Menu = new MainMenu(game, _ui);
+            Label.Put("Quit Menu", 30, Color.White);
+            if (Button.Put("Yes", 30, Color.White).Clicked) _game.Exit();
+            if (Button.Put("No", 30, Color.White).Clicked) _game.Menu = new MainMenu(_game, _ui, _name);
             MenuPanel.Pop();
         }
     }

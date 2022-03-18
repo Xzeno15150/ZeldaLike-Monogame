@@ -12,10 +12,10 @@ namespace ZeldaMonogame.Core.Game.Menu
 {
     public abstract class Menu
     {
-        protected ZeldaMonogameGame game;
+        protected ZeldaMonogameGame _game;
         protected IMGUI _ui;
-        protected string _name = "Saito";
-
+        protected string _name = "";
+        protected bool _isPlaying;
 
         
         public abstract void Update(GameTime gameTime);

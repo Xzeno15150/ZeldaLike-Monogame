@@ -12,19 +12,21 @@ namespace ZeldaMonogame.Core.Game.Menu
 {
     class PlayingMenu : Menu
     {
-        public PlayingMenu(ZeldaMonogameGame gameZelda, IMGUI ui)
+        public PlayingMenu(ZeldaMonogameGame gameZelda, IMGUI ui, string name)
         {
-            game = gameZelda;
+            _game = gameZelda;
             _ui = ui;
+            _name = name;
+            _isPlaying = true;
         }
 
         public override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                game.Exit();
-            game.Map.Update(gameTime);
+                _game.Menu = new PauseMenu(_game, _ui, _name, _isPlaying);
+            _game.Map.Update(gameTime);
 
-            foreach (Entite e in game.Entites)
+            foreach (Entite e in _game.Entites)
             {
                 e.Update(gameTime);
             }
@@ -32,8 +34,8 @@ namespace ZeldaMonogame.Core.Game.Menu
 
         public override void DrawMenu(GameTime gameTime)
         {
-            game.Map.Draw(gameTime, game.GraphicsDevice);
-            foreach (Entite e in game.Entites)
+            _game.Map.Draw(gameTime, _game.GraphicsDevice);
+            foreach (Entite e in _game.Entites)
             {
                 e.Draw(gameTime);
             }
