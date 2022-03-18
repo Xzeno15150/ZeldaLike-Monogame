@@ -11,20 +11,31 @@ using ZeldaMonogame.Core.Game.Metier.Input;
 using System.Collections.Generic;
 using ZeldaMonogame.Core.Game.Metier.Deplaceur;
 using System;
+using FontStashSharp;
+using Apos.Gui;
+using MonoGame.Extended.TextureAtlases;
+using Apos.Input;
+using System;
+using ZeldaMonogame.Core.Game.Menu;
 
 namespace ZeldaMonogame
 {
     public class ZeldaMonogameGame : Game
     {
         private GraphicsDeviceManager _graphics;
-
-        private DeplaceurJoueur _deplaceurJoueur;
         
+        public DeplaceurJoueur DeplaceurJoueur;
         public Joueur PersonnagePrincipal { get; }
         public IList<Entite> Entites { get; set; }
         
 
         public Map Map { get; set; }
+        public IGetterInput GetterInput { get; set; }
+        public Menu Menu { get; set; }
+
+        private IMGUI _ui;
+        private string userName = "Saito";
+
         public SpriteBatch SpriteBatch { get; set; }
 
 
@@ -35,15 +46,16 @@ namespace ZeldaMonogame
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            
+
             Entites = new List<Entite>();
 
             PersonnagePrincipal = new Joueur(this, 10*32, 11*32);
+            GetterInput = new InputKeyboard();
             Entites.Add(PersonnagePrincipal);
 
             Map = new Map(this, "Main");
 
-            _deplaceurJoueur = new DeplaceurJoueur(Map, PersonnagePrincipal, new InputKeyboard());
+            DeplaceurJoueur = new DeplaceurJoueur(Map, PersonnagePrincipal, GetterInput);
 
         }
 
@@ -53,7 +65,7 @@ namespace ZeldaMonogame
             _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
             _graphics.IsFullScreen = true;
             _graphics.ApplyChanges();*/
-
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -62,40 +74,37 @@ namespace ZeldaMonogame
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            foreach (Entite e in Entites) {
+            foreach (Entite e in Entites)
+            {
                 e.LoadContent(GraphicsDevice, Window);
             }
             Map.LoadContent(GraphicsDevice, Window);
+
+            FontSystem fontSystem = FontSystemFactory.Create(GraphicsDevice, 2048, 2048);
+            fontSystem.AddFont(TitleContainer.OpenStream("Font/source-code-pro-medium.ttf"));
+
+            GuiHelper.Setup(this, fontSystem);
+            _ui = new IMGUI();
+            GuiHelper.CurrentIMGUI = _ui;
+
+            Menu = new MainMenu(this, _ui, userName);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) 
-            {
-                Map.SaveEvents();
-                Exit();
-            }
+            GuiHelper.UpdateSetup(gameTime);
+            _ui.UpdateAll(gameTime);
+            GuiHelper.UpdateCleanup();
 
-            _deplaceurJoueur.Update(gameTime);
-
-            Map.Update(gameTime);
-
-            foreach(Entite e in Entites)
-            {
-                e.Update(gameTime);
-            }
-
+            Menu.Update(gameTime);
             base.Update(gameTime);
         }
 
+
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-            Map.Draw(gameTime, GraphicsDevice);
-            foreach (Entite e in Entites)
-            {
-                e.Draw(gameTime, Map.Camera.WorldToScreen(e.Position));
-            }
+            GraphicsDevice.Clear(Color.DarkOliveGreen);
+            Menu.DrawMenu(gameTime);
             base.Draw(gameTime);
         }
 
@@ -105,7 +114,7 @@ namespace ZeldaMonogame
             Map = new Map(this, nameNewMap);
             Map.LoadContent(GraphicsDevice, Window);
 
-            _deplaceurJoueur.MoveEntite(posJoueurOnNewMap);
+            DeplaceurJoueur.MoveEntite(posJoueurOnNewMap);
         }
     }
 }
