@@ -35,5 +35,12 @@ namespace ZeldaMonogame.Core.Game.Metier.Input
 
             return Vector2.Zero;
         }
+
+        public bool IsInteractPressed()
+        {
+            var state = Keyboard.GetState();
+
+            return state.IsKeyDown(Keys.Space);
+        }
     }
 }

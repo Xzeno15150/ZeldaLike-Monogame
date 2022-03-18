@@ -38,7 +38,7 @@ namespace ZeldaMonogame
             
             Entites = new List<Entite>();
 
-            PersonnagePrincipal = new Joueur(this, 14*32, 11*32);
+            PersonnagePrincipal = new Joueur(this, 10*32, 11*32);
             Entites.Add(PersonnagePrincipal);
 
             Map = new Map(this, "Main");
@@ -70,8 +70,11 @@ namespace ZeldaMonogame
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape)) 
+            {
+                Map.SaveEvents();
                 Exit();
+            }
 
             _deplaceurJoueur.Update(gameTime);
 

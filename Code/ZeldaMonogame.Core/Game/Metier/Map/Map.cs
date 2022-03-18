@@ -21,6 +21,8 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
         private TiledMap _tiledMap;
         private TiledMapRenderer _tileMapRenderer;
 
+        private static readonly JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+
         private ZeldaMonogameGame _game;
 
         private List<Event> _mapEvents;
@@ -38,36 +40,24 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
         {
             _game = game;
             Name = name;
-            LoadEvents(game);
+            LoadEvents();
         }
 
-        private void LoadEvents(ZeldaMonogameGame game)
+        private void LoadEvents()
         {
-            _mapEvents = new List<Event>();
-            JsonSerializer jsonSerializer = new JsonSerializer();
-
-            StreamReader streamReader = new StreamReader($"Content/Maps/tiledmaps/{Name}/Events.json");
-
-            using(JsonTextReader jsonTextReader = new JsonTextReader(streamReader))
+            var json = File.ReadAllText($"Content/Maps/tiledmaps/{Name}/Events.json");
+            _mapEvents = JsonConvert.DeserializeObject<List<Event>>(json , settings);
+            foreach(var evt in _mapEvents)
             {
-                var allEvents = jsonSerializer.Deserialize<List<Dictionary<string, string>>>(jsonTextReader);
-
-                if (allEvents == null) return;
-
-                foreach (Dictionary<string, string> e in allEvents)
-                {
-                    switch (e["class"])
-                    {
-                        case "TeleportationEvent":
-                            _mapEvents.Add(new TeleportationEvent(game,
-                                                                  int.Parse(e["xOldMap"]), int.Parse(e["yOldMap"]),
-                                                                  e["nameNewMap"], int.Parse(e["xNewMap"]), int.Parse(e["yNewMap"])));
-                            break;
-                    }
-
-                }
-
+                evt.Game = _game;
             }
+        }
+
+        public void SaveEvents()
+        {
+            var json = JsonConvert.SerializeObject(_mapEvents, settings);
+
+            File.WriteAllText($"Content/Maps/tiledmaps/{Name}/Events.json", json);
         }
 
         public void LoadContent(GraphicsDevice graphicsDevice, GameWindow gameWindow)
@@ -87,11 +77,17 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             _tileMapRenderer.Update(gameTime);
         }
 
-        public bool IsOnCollisionTile(ushort x, ushort y)
+        public bool IsOnCollisionTile(float x, float y)
         {
             TiledMapTileLayer collisionsLayer = (TiledMapTileLayer) _tiledMap.GetLayer("collisions");
 
             return !collisionsLayer.GetTile((ushort)(x / _tiledMap.TileWidth), (ushort)(y / _tiledMap.TileHeight)).IsBlank;
+        }
+
+        public Event GetEventFromPos(float x, float y)
+        {
+            return _mapEvents.FirstOrDefault(e => x > e.TiledPostionOnMap.X * _tiledMap.TileWidth && x < e.TiledPostionOnMap.X * _tiledMap.TileWidth + _tiledMap.TileWidth 
+                                                && y > e.TiledPostionOnMap.Y * _tiledMap.TileHeight && y < e.TiledPostionOnMap.Y * _tiledMap.TileHeight + _tiledMap.TileHeight);
         }
 
         public void MoveCamera(Vector2 position)

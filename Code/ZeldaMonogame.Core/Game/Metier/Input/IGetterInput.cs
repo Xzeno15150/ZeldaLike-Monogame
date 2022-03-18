@@ -17,5 +17,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Input
         /// </summary>
         /// <returns>Vector2</returns>
         Vector2 GetDirection();
+
+        bool IsInteractPressed();
     }
 }

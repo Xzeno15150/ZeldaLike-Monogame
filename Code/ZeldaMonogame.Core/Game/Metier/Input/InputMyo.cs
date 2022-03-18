@@ -59,5 +59,10 @@ namespace ZeldaMonogame.Core.Game.Metier.Input
 
             return Vector2.Zero;
         }
+
+        public bool IsInteractPressed()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

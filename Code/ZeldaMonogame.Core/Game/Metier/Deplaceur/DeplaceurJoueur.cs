@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ZeldaMonogame.Core.Game.Metier.Entites;
+using ZeldaMonogame.Core.Game.Metier.Events;
 using ZeldaMonogame.Core.Game.Metier.Input;
 
 namespace ZeldaMonogame.Core.Game.Metier.Deplaceur
@@ -43,6 +44,11 @@ namespace ZeldaMonogame.Core.Game.Metier.Deplaceur
                 && newPos.X > 0 && newPos.X < Map.Width && newPos.Y > 0 && newPos.Y < Map.Height)
             {
                 _joueur.Position = newPos;
+                var evt = Map.GetEventFromPos(newPos.X, newPos.Y);
+
+                if (evt != null && (evt.Type == EventType.auto || evt.Type == EventType.interact && _getterInput.IsInteractPressed()))
+                    evt.Do();
+
                 return true;
             }
             return false;
