@@ -13,6 +13,11 @@ namespace ZeldaMonogame.Core.Game.Metier.Deplaceur
     /// </summary>
     public interface IDeplaceurEntite
     {
+        /// <summary>
+        /// Déplace l'entité
+        /// </summary>
+        /// <param name="newPos"></param>
+        /// <returns></returns>
         bool MoveEntite(Vector2 newPos);
     }
 }

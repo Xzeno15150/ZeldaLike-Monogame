@@ -27,7 +27,7 @@ namespace ZeldaMonogame
     {
         private GraphicsDeviceManager _graphics;
         
-        public DeplaceurJoueur DeplaceurJoueur;
+        public DeplaceurJoueur DeplaceurJoueur { get; set; }
         public Joueur PersonnagePrincipal { get; }
         public IList<Entite> Entites { get; set; }
         
@@ -61,7 +61,7 @@ namespace ZeldaMonogame
 
             Map = new Map(this, "Main");
 
-            DeplaceurJoueur = new DeplaceurJoueur(Map, PersonnagePrincipal, GetterInput);
+            DeplaceurJoueur = new DeplaceurJoueur(this);
 
         }
 

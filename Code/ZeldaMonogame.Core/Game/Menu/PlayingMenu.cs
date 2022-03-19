@@ -37,9 +37,9 @@ namespace ZeldaMonogame.Core.Game.Menu
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 _game.Menu = new MainMenu(_game, _ui, _name);
             
-            _game.DeplaceurJoueur.Update(gameTime); //déplace le joueur
+           
             _game.Map.Update(gameTime); //update la map
-
+            _game.DeplaceurJoueur.Update(gameTime); //déplace le joueur
             foreach (Entite e in _game.Entites)
             {
                 e.Update(gameTime); //appuie le update de chaque entité du jeu

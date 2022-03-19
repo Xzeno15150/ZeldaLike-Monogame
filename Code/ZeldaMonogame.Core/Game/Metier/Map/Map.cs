@@ -28,7 +28,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
 
         private ZeldaMonogameGame _game; //manager du jeu
 
-        private List<Event> _mapEvents; //collection d'évènements liés à la map
+        private IList<Event> _mapEvents; //collection d'évènements liés à la map
 
         private readonly int ZOOM = 2; //zoom de la caméra
 
@@ -48,7 +48,8 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
         {
             _game = game;
             Name = name;
-           // LoadEvents();
+            //LoadEvents();
+            LoadStubEvents();
         }
 
         /// <summary>
@@ -57,11 +58,17 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
         private void LoadEvents()
         {
             var json = File.ReadAllText($"Content/Maps/tiledmaps/{Name}/Events.json");
-            _mapEvents = JsonConvert.DeserializeObject<List<Event>>(json , settings); //charge à partir d'un fichier json
-            foreach(var evt in _mapEvents)
+            _mapEvents = JsonConvert.DeserializeObject<List<Event>>(json, settings); //charge à partir d'un fichier json
+            foreach (var evt in _mapEvents)
             {
                 evt.Game = _game;
             }
+        }
+
+        private void LoadStubEvents()
+        {
+            _mapEvents = new List<Event>();
+            _mapEvents.Add(new TeleportationEvent(_game, 12, 9, Name, 0, 0, EventType.interact));
         }
 
         /// <summary>

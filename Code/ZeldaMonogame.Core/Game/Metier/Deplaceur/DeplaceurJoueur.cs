@@ -18,10 +18,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Deplaceur
     public class DeplaceurJoueur : IDeplaceurEntite
     {
 
-        private Map.Map Map { get; set; } //Gestionnaire de la map
-        private Joueur _joueur; //Joueur à déplacer
-
-        private IGetterInput _getterInput; //Getter pour la direction
+        private ZeldaMonogameGame _game;
 
         /// <summary>
         /// Constructeur
@@ -29,11 +26,9 @@ namespace ZeldaMonogame.Core.Game.Metier.Deplaceur
         /// <param name="map"> gestionnaire de la map</param>
         /// <param name="joueur"> joueur à déplacer</param>
         /// <param name="getterInput">getter pour la direction</param>
-        public DeplaceurJoueur(Map.Map map, Joueur joueur, IGetterInput getterInput)
+        public DeplaceurJoueur(ZeldaMonogameGame game)
         {
-            Map = map;
-            _joueur = joueur;
-            _getterInput = getterInput;
+            _game = game;
         }
 
         /// <summary>
@@ -43,13 +38,13 @@ namespace ZeldaMonogame.Core.Game.Metier.Deplaceur
         public void Update(GameTime gameTime)
         {
             var seconds = gameTime.GetElapsedSeconds();
-            Vector2 direction = _getterInput.GetDirection(); //récupère la direction dans laquelle le déplacer
+            Vector2 direction = _game.GetterInput.GetDirection(); //récupère la direction dans laquelle le déplacer
 
-            Vector2 newPos = _joueur.Position + _joueur.Speed * direction * seconds;
+            Vector2 newPos = _game.PersonnagePrincipal.Position + _game.PersonnagePrincipal.Speed * direction * seconds;
 
 
             MoveEntite(newPos); 
-            Map.MoveCamera(_joueur.Position); //update la position de la caméra de la carte par rapport aux coordonées du personnage
+            _game.Map.MoveCamera(_game.PersonnagePrincipal.Position); //update la position de la caméra de la carte par rapport aux coordonées du personnage
         }
 
         /// <summary>
@@ -59,13 +54,13 @@ namespace ZeldaMonogame.Core.Game.Metier.Deplaceur
         /// <returns></returns>
         public bool MoveEntite(Vector2 newPos)
         {
-            if (!Map.IsOnCollisionTile((ushort)newPos.X, (ushort)newPos.Y)
-                && newPos.X > 0 && newPos.X < Map.Width && newPos.Y > 0 && newPos.Y < Map.Height)
+            if (!_game.Map.IsOnCollisionTile((ushort)newPos.X, (ushort)newPos.Y)
+                && newPos.X > 0 && newPos.X < _game.Map.Width && newPos.Y > 0 && newPos.Y < _game.Map.Height)
             {
-                _joueur.Position = newPos;
-                var evt = Map.GetEventFromPos(newPos.X, newPos.Y);
+                _game.PersonnagePrincipal.Position = newPos;
+                var evt = _game.Map.GetEventFromPos(newPos.X, newPos.Y);
 
-                if (evt != null && (evt.Type == EventType.auto || evt.Type == EventType.interact && _getterInput.IsInteractPressed()))
+                if (evt != null && (evt.Type == EventType.auto || evt.Type == EventType.interact && _game.GetterInput.IsInteractPressed()))
                     evt.Do();
 
                 return true;
