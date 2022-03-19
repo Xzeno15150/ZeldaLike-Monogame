@@ -20,6 +20,9 @@ using ZeldaMonogame.Core.Game.Menu;
 
 namespace ZeldaMonogame
 {
+    /// <summary>
+    /// Manager du jeu
+    /// </summary>
     public class ZeldaMonogameGame : Game
     {
         private GraphicsDeviceManager _graphics;
@@ -34,11 +37,14 @@ namespace ZeldaMonogame
         public Menu Menu { get; set; }
 
         private IMGUI _ui;
-        private string userName = "Saito";
+        private string userName = "";
 
         public SpriteBatch SpriteBatch { get; set; }
 
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
         public ZeldaMonogameGame()
         {
 
@@ -59,6 +65,9 @@ namespace ZeldaMonogame
 
         }
 
+        /// <summary>
+        /// Initialisation
+        /// </summary>
         protected override void Initialize()
         {
             /*_graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
@@ -69,6 +78,10 @@ namespace ZeldaMonogame
             base.Initialize();
         }
 
+
+        /// <summary>
+        /// Charge les contenus du jeu -> map, texture des joueurs + menu
+        /// </summary>
         protected override void LoadContent()
         {
             GraphicsDevice.BlendState = BlendState.AlphaBlend;
@@ -90,6 +103,10 @@ namespace ZeldaMonogame
             Menu = new MainMenu(this, _ui, userName);
         }
 
+        /// <summary>
+        /// Update appelée à chaque tour de boucle du jeu
+        /// </summary>
+        /// <param name="gameTime">boucle de jeu</param>
         protected override void Update(GameTime gameTime)
         {
             GuiHelper.UpdateSetup(gameTime);
@@ -100,7 +117,10 @@ namespace ZeldaMonogame
             base.Update(gameTime);
         }
 
-
+        /// <summary>
+        /// Dessine le jeu
+        /// </summary>
+        /// <param name="gameTime">boucle de jeu</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DarkOliveGreen);
@@ -108,7 +128,11 @@ namespace ZeldaMonogame
             base.Draw(gameTime);
         }
 
-
+        /// <summary>
+        /// Change la map
+        /// </summary>
+        /// <param name="nameNewMap">nom de la nouvelle map</param>
+        /// <param name="posJoueurOnNewMap">position du joueur sur la nouvelle map</param>
         public void ChangeMap(string nameNewMap, Vector2 posJoueurOnNewMap)
         {
             Map = new Map(this, nameNewMap);

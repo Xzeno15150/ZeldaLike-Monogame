@@ -10,19 +10,31 @@ using System.Threading.Tasks;
 
 namespace ZeldaMonogame.Core.Game.Menu
 {
+    /// <summary>
+    /// Menu principal
+    /// </summary>
     public class MainMenu : Menu
     {
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="gameZelda">manager du jeu</param>
+        /// <param name="ui"></param>
+        /// <param name="name">nom de l'utilisateur</param>
         public MainMenu(ZeldaMonogameGame gameZelda, IMGUI ui, string name)
         {
             _game = gameZelda;
             _ui = ui;
             _name = name;
-            _isPlaying = false;
         }
 
+        /// <summary>
+        /// Créer le menu
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            MenuPanel.Push().XY = new Vector2(100, 100); //Dispose en vertical les éléments suivant
+            MenuPanel.Push().XY = new Vector2(100, 100); //Dispose en vertical les éléments qui suivent
             Label.Put("Main Menu", 30, Color.White);
             Label.Put($"Your name is '{_name}'", 30, Color.White);
             if (Button.Put("Play",30, Color.White).Clicked) _game.Menu = new PlayingMenu(_game, _ui, _name);

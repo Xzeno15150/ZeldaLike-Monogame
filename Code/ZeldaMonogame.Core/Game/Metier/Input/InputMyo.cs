@@ -9,7 +9,7 @@ using static System.Console;
 namespace ZeldaMonogame.Core.Game.Metier.Input
 {
     /// <summary>
-    /// Classe qui gère les du bracelet Myo
+    /// Classe qui gère les entrées du bracelet Myo
     /// </summary>
     class InputMyo : IGetterInput
     {
@@ -42,27 +42,37 @@ namespace ZeldaMonogame.Core.Game.Metier.Input
         /// <returns>Vector2</returns>
         public Vector2 GetDirection()
         {
-            myoManager.UnlockAll(MyoSharp.Device.UnlockType.Hold); //Dévérouille le bracelet Myo
+            myoManager.UnlockAll(MyoSharp.Device.UnlockType.Hold); //Déverrouille le bracelet Myo
             myoManager.StartListening(); //Ecoute le changement de pose
             
-            if (current_pose == Pose.FingersSpread) //FingerSpread -> déplacement en haut
+            if (current_pose == Pose.FingersSpread) //FingerSpread (écarter les doigts) -> déplacement en haut
                 return new Vector2(0, -1);
 
-            if (current_pose == Pose.Fist) //Fist -> Déplacement vers le bas
+            if (current_pose == Pose.Fist) //Fist (poing fermé)-> Déplacement vers le bas
                 return new Vector2(0, 1);
 
-            if (current_pose == Pose.WaveIn) //WaveIn -> Déplacement vers la gauche
+            if (current_pose == Pose.WaveIn) //WaveIn (poignet à gauche) -> Déplacement vers la gauche
                 return new Vector2(-1, 0);
 
-            if (current_pose == Pose.WaveOut) //WaveOut -> Déplacement vers la droite
+            if (current_pose == Pose.WaveOut) //WaveOut (poignet à droite) -> Déplacement vers la droite
                 return new Vector2(1, 0);
 
             return Vector2.Zero;
         }
 
+        /// <summary>
+        /// Renvoie true si le mouvement DoubleTap est effectuée lors d'une intéraction déclenchée
+        /// </summary>
+        /// <returns>bool</returns>
         public bool IsInteractPressed()
         {
-            throw new NotImplementedException();
+            myoManager.UnlockAll(MyoSharp.Device.UnlockType.Hold); //Déverrouille le bracelet Myo
+            myoManager.StartListening(); //Ecoute le changement de pose
+
+            if (current_pose == Pose.DoubleTap) //DoubleTap = tapoter son pouce et son majeur deux fois de suites
+                return true;
+
+            return false;
         }
     }
 }

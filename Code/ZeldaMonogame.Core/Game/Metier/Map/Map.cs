@@ -16,43 +16,57 @@ using ZeldaMonogame.Core.Game.Metier.Events;
 
 namespace ZeldaMonogame.Core.Game.Metier.Map
 {
+    /// <summary>
+    /// Manager qui gère la map et la caméra
+    /// </summary>
     public class Map
     {
-        private TiledMap _tiledMap;
+        private TiledMap _tiledMap; //map
         private TiledMapRenderer _tileMapRenderer;
 
         private static readonly JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
-        private ZeldaMonogameGame _game;
+        private ZeldaMonogameGame _game; //manager du jeu
 
-        private List<Event> _mapEvents;
+        private List<Event> _mapEvents; //collection d'évènements liés à la map
 
-        private readonly int ZOOM = 2;
+        private readonly int ZOOM = 2; //zoom de la caméra
 
-        public int Height { get; private set; }
-        public int Width { get; private set; }
+        public int Height { get; private set; } //taille de la map
+        public int Width { get; private set; } //largeur de la map
 
-        public string Name { get; set; }
+        public string Name { get; set; } //nom de la map
 
-        public OrthographicCamera Camera { get; set; }
+        public OrthographicCamera Camera { get; set; } //caméra de la map
            
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="game">manager du jeu</param>
+        /// <param name="name">nom de la map</param>
         public Map(ZeldaMonogameGame game, string name)
         {
             _game = game;
             Name = name;
-            LoadEvents();
+           // LoadEvents();
         }
 
+        /// <summary>
+        /// Charge les évènements de la map à partir d'un fichier json
+        /// </summary>
         private void LoadEvents()
         {
             var json = File.ReadAllText($"Content/Maps/tiledmaps/{Name}/Events.json");
-            _mapEvents = JsonConvert.DeserializeObject<List<Event>>(json , settings);
+            _mapEvents = JsonConvert.DeserializeObject<List<Event>>(json , settings); //charge à partir d'un fichier json
             foreach(var evt in _mapEvents)
             {
                 evt.Game = _game;
             }
         }
 
+        /// <summary>
+        /// Sauvegarde les évènements de la map dans un fichier json
+        /// </summary>
         public void SaveEvents()
         {
             var json = JsonConvert.SerializeObject(_mapEvents, settings);
@@ -60,6 +74,12 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             File.WriteAllText($"Content/Maps/tiledmaps/{Name}/Events.json", json);
         }
 
+
+        /// <summary>
+        /// Charge la map et instancie la caméra
+        /// </summary>
+        /// <param name="graphicsDevice"></param>
+        /// <param name="gameWindow"></param>
         public void LoadContent(GraphicsDevice graphicsDevice, GameWindow gameWindow)
         {
             _tiledMap = _game.Content.Load<TiledMap>($"Maps/tiledmaps/{Name}/{Name}");
@@ -72,11 +92,21 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             Height = _tiledMap.Height * _tiledMap.TileHeight;
         }
 
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             _tileMapRenderer.Update(gameTime);
         }
 
+        /// <summary>
+        /// Renvoie true si collision avec une tuile
+        /// </summary>
+        /// <param name="x">coordonnées x de la tuile</param>
+        /// <param name="y">coordonnées y de la tuile</param>
+        /// <returns></returns>
         public bool IsOnCollisionTile(float x, float y)
         {
             TiledMapTileLayer collisionsLayer = (TiledMapTileLayer) _tiledMap.GetLayer("collisions");
@@ -84,12 +114,23 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             return !collisionsLayer.GetTile((ushort)(x / _tiledMap.TileWidth), (ushort)(y / _tiledMap.TileHeight)).IsBlank;
         }
 
+        /// <summary>
+        /// Vérifie s'il y a un évènement aux coordonnées (x,y), null dans le cas contraire
+        /// </summary>
+        /// <param name="x">coordonnées x</param>
+        /// <param name="y">coordonnées y</param>
+        /// <returns>Event</returns>
         public Event GetEventFromPos(float x, float y)
         {
             return _mapEvents.FirstOrDefault(e => x > e.TiledPostionOnMap.X * _tiledMap.TileWidth && x < e.TiledPostionOnMap.X * _tiledMap.TileWidth + _tiledMap.TileWidth 
                                                 && y > e.TiledPostionOnMap.Y * _tiledMap.TileHeight && y < e.TiledPostionOnMap.Y * _tiledMap.TileHeight + _tiledMap.TileHeight);
+           
         }
 
+        /// <summary>
+        /// Déplace la caméra à une nouvelle position
+        /// </summary>
+        /// <param name="position">nouvelle position</param>
         public void MoveCamera(Vector2 position)
         {
             Vector2 camPosition = Vector2.Zero;
@@ -129,6 +170,11 @@ namespace ZeldaMonogame.Core.Game.Metier.Map
             Camera.LookAt(camPosition);
         }
 
+        /// <summary>
+        /// Dessine la map
+        /// </summary>
+        /// <param name="gameTime">boucle de jeu</param>
+        /// <param name="graphicsDevice"></param>
         public void Draw(GameTime gameTime, GraphicsDevice graphicsDevice)
         {
             _game.SpriteBatch.Begin();

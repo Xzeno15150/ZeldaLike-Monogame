@@ -11,9 +11,18 @@ using ZeldaMonogame.Core.Game.Metier.Input;
 
 namespace ZeldaMonogame.Core.Game.Menu
 {
+    /// <summary>
+    /// Menu des paramètres
+    /// </summary>
     public class SettingsMenu : Menu
     {
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="gameZelda">manager du jeu</param>
+        /// <param name="ui"></param>
+        /// <param name="name">nom de l'utilisateur</param>
         public SettingsMenu(ZeldaMonogameGame gameZelda,IMGUI ui, string name)
         {
             _game = gameZelda;
@@ -21,6 +30,10 @@ namespace ZeldaMonogame.Core.Game.Menu
             _name = name;
         }
 
+        /// <summary>
+        /// Créer le menu
+        /// </summary>
+        /// <param name="gameTime">boucle de jeu</param>
         public override void Update(GameTime gameTime)
         {
             MenuPanel.Push().XY = new Vector2(100, 100);
@@ -59,7 +72,7 @@ namespace ZeldaMonogame.Core.Game.Menu
                  _game.Menu = new MainMenu(_game, _ui, _name);
             }
             _name = textBox.Text; //On récupère le nouveau pseudo
-            MenuPanel.Pop();
+            //MenuPanel.Pop();
         }
     }
 }

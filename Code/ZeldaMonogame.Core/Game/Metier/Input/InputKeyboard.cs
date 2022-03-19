@@ -14,7 +14,7 @@ namespace ZeldaMonogame.Core.Game.Metier.Input
     public class InputKeyboard : IGetterInput
     {
         /// <summary>
-        /// Retourne un vecteur correspondant à la direction pointée
+        /// Retourne un vecteur correspondant à la direction voulue
         /// </summary>
         /// <returns>Vector2</returns>
         public Vector2 GetDirection()
@@ -36,6 +36,10 @@ namespace ZeldaMonogame.Core.Game.Metier.Input
             return Vector2.Zero;
         }
 
+        /// <summary>
+        /// Renvoie true si la touche espace est apputée lors d'une intéraction déclenchée
+        /// </summary>
+        /// <returns>bool</returns>
         public bool IsInteractPressed()
         {
             var state = Keyboard.GetState();

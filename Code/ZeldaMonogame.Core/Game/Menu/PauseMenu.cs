@@ -11,12 +11,11 @@ namespace ZeldaMonogame.Core.Game.Menu
     class PauseMenu : Menu
     {
 
-        public PauseMenu(ZeldaMonogameGame gameZelda, IMGUI ui, string name, bool isPlaying)
+        public PauseMenu(ZeldaMonogameGame gameZelda, IMGUI ui, string name)
         {
             _game = gameZelda;
             _ui = ui;
             _name = name;
-            _isPlaying = isPlaying;
         }
 
         public override void Update(GameTime gameTime)
