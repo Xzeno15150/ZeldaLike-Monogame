@@ -1,6 +1,6 @@
 # Jeu Zelda-Like avec Monogame & bracelet Myo
 
-##### Jeu type Zelda réalisé en C# en .Net 5.0 à l'aide du framework Monogame.
+##### Jeu type Zelda réalisé en C# en .Net 5.0 à l'aide du framework Monogame. Réalisé par Perret Louis et Victor Gaillard
 
 ######  But : Déplacez vous librement sur une map afin d'en découvrir tous les secrets ~~
 
