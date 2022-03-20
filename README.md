@@ -4,7 +4,7 @@
 
 ######  But : Déplacez vous librement sur une map afin d'en découvrir tous les secrets ~~
 
-Pour lancer le projet -> lancer la solution Code/ZeldaMonogame.Global/ZeldaMonogame.Deskop.sln, puis lancer le projet ZeldaMonogame.Deskop
+Pour lancer le projet -> lancer la solution Code/ZeldaMonogame.Global/ZeldaMonogame.Deskop.sln, puis lancer le projet ZeldaMonogame.DeskopGL
 
 *Si vous rencontrez un problème avec le projet WindowDX lors de l'exécution du projet-> décharger le*
 
