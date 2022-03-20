@@ -18,4 +18,10 @@ Pour faire fonctionner le bracelet Myo sur votre pc, installer (si ce n'est pas 
 
 Vous pouvez à tout moment revenir au menu pour changer les paramètres à l'aide la touche **échap**.
 
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true">
+    <source src="Documentation/video_presentation.mp4" type="video/mp4">
+  </video>
+</figure>
+
 <center><h1><b> Bon jeu ! </b1></h1><center>
